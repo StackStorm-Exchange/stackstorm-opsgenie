@@ -1,7 +1,7 @@
 ---
 ref: opsgenie
 name: opsgenie
-description: A intergration pack for the OpsGenie Service
+description: A integration pack for the OpsGenie Service
 keywords:
     - OpsGenie
 version: 0.2.0
