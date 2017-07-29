@@ -1,11 +1,22 @@
 # OpsGenie Pack
 
-This integration pack allows you to intergrate with
-[OpsGenie](https://www.opsgenie.com/). Which is a service to manage
-alerts and oncall rotas.
+This pack allows you to integrate with [OpsGenie](https://www.opsgenie.com/).
+This is a service to manage alerts and oncall rosters.
 
-You'll need an account and to create an integration API key and update
-the packs `config.yaml`.
+## Configuration
+
+Copy the example configuration in [opsgenie.yaml.example](./opsgenie.yaml.example)
+to `/opt/stackstorm/configs/opsgenie.yaml` and edit as required.
+
+It should contain:
+
+* `api_key` - The integration API key from the OpsGenie integration page.
+
+You'll need an OpsGenie account to create an integration API key.
+
+**Note** : When modifying the configuration in `/opt/stackstorm/configs/` please
+           remember to tell StackStorm to load these new values by running
+           `st2ctl reload --register-configs`
 
 ## Using OpsGenie for hubot Heartbeat
 
@@ -34,14 +45,8 @@ If both of these are `successful` you can eanble them with:
 st2 rule enable opsgenie.send_heartbeat_timer
 ```
 
-To get an alert if it expires an intergration for Heartbeat should be
+To get an alert if it expires an integration for Heartbeat should be
 configured in the OpsGenie web interface.
-
-## Configureation
-
-Update the `config.yaml` to setup the API key for OpsGenie.
-
-* `api_key` - The integration API key from the OpsGenie integration page.
 
 ## Coverage of OpsGenie API
 
