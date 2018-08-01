@@ -1,16 +1,16 @@
 {
-    "data": {
-        "name": "HeartbeatName",
-        "description": "Sample heartbeat description",
-        "interval": 10,
-        "enabled": true,
-        "intervalUnit": "minutes",
-        "expired": true,
-        "ownerTeam": {
-            "id": "6c7be998-fad9-4491-a9a7-d99alp4c0ae5",
-            "name": "ops_team"
-        }
-    },
-    "took": 0,
-    "requestId": "a19344d1-6ece-4c1c-9c02-cb062e1d21f9"
+  "data": {
+    "name": "HeartbeatName",
+    "description": "Sample heartbeat description",
+    "interval": 10,
+    "enabled": true,
+    "intervalUnit": "minutes",
+    "expired": true,
+    "ownerTeam": {
+      "id": "6c7be998-fad9-4491-a9a7-d99alp4c0ae5",
+      "name": "ops_team"
+    }
+  },
+  "took": 0,
+  "requestId": "a19344d1-6ece-4c1c-9c02-cb062e1d21f9"
 }

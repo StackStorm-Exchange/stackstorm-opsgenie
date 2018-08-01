@@ -12,9 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from opsgenie_base_test_case import OpsGenieBaseActionTestCase
-
 from get_integration import GetIntegrationAction
+from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 
 class GetIntegrationTestCase(OpsGenieBaseActionTestCase):
@@ -45,7 +44,8 @@ class GetIntegrationTestCase(OpsGenieBaseActionTestCase):
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('GET',
-                             "mock://api.opsgenie.com/v2/integrations/8418d193-2dab-4490-b331-8c02cdd196b7",
+                             "mock://api.opsgenie.com/v2/integrations/8418d193-2dab-4490-b331"
+                             "-8c02cdd196b7",
                              text=self.get_fixture_content("get_integration.json"))
 
         result = action.run("8418d193-2dab-4490-b331-8c02cdd196b7")

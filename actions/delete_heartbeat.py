@@ -31,7 +31,7 @@ class DeleteHeartbeatAction(OpsGenieBaseAction):
         payload = {"name": urllib.pathname2url(name)}
 
         data = self._req("DELETE",
-                         "v2/heartbeats/"+name,
+                         "v2/heartbeats/" + name,
                          payload=payload)
 
         return data

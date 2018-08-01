@@ -12,9 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from opsgenie_base_test_case import OpsGenieBaseActionTestCase
-
 from disable_integration import DisableIntegrationAction
+from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 
 class DisableIntegrationTestCase(OpsGenieBaseActionTestCase):
@@ -29,7 +28,7 @@ class DisableIntegrationTestCase(OpsGenieBaseActionTestCase):
 
         self.assertRaises(ValueError,
                           action.run,
-                          "d32d16e6-020c-46f0-9383-4f0e32603b9d",'POST')
+                          "d32d16e6-020c-46f0-9383-4f0e32603b9d", 'POST')
 
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
@@ -38,15 +37,16 @@ class DisableIntegrationTestCase(OpsGenieBaseActionTestCase):
 
         self.assertRaises(ValueError,
                           action.run,
-                          "d32d16e6-020c-46f0-9383-4f0e32603b9d",'POST')
+                          "d32d16e6-020c-46f0-9383-4f0e32603b9d", 'POST')
 
     def test_run_api_success(self):
         expected = self.load_json("disable_integration.json")
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('POST',
-                             "mock://api.opsgenie.com/v2/integrations/d32d16e6-020c-46f0-9383-4f0e32603b9d/disable",
+                             "mock://api.opsgenie.com/v2/integrations/d32d16e6-020c-46f0-9383"
+                             "-4f0e32603b9d/disable",
                              text=self.get_fixture_content("disable_integration.json"))
 
-        result = action.run("d32d16e6-020c-46f0-9383-4f0e32603b9d",'POST')
+        result = action.run("d32d16e6-020c-46f0-9383-4f0e32603b9d", 'POST')
         self.assertEqual(result, expected)

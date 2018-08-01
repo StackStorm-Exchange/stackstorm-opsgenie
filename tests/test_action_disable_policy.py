@@ -12,9 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from opsgenie_base_test_case import OpsGenieBaseActionTestCase
-
 from disable_policy import DisablePolicyAction
+from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 
 class DisablePolicyTestCase(OpsGenieBaseActionTestCase):
@@ -29,7 +28,7 @@ class DisablePolicyTestCase(OpsGenieBaseActionTestCase):
 
         self.assertRaises(ValueError,
                           action.run,
-                          "70eec6fe-614f-41b3-af23-ce3e509bfbce","1")
+                          "70eec6fe-614f-41b3-af23-ce3e509bfbce", "1")
 
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
@@ -38,15 +37,16 @@ class DisablePolicyTestCase(OpsGenieBaseActionTestCase):
 
         self.assertRaises(ValueError,
                           action.run,
-                          "70eec6fe-614f-41b3-af23-ce3e509bfbce","1")
+                          "70eec6fe-614f-41b3-af23-ce3e509bfbce", "1")
 
     def test_run_api_success(self):
         expected = self.load_json("disable_policy.json")
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('POST',
-                             "mock://api.opsgenie.com/v2/policies/70eec6fe-614f-41b3-af23-ce3e509bfbce/disable",
+                             "mock://api.opsgenie.com/v2/policies/70eec6fe-614f-41b3-af23"
+                             "-ce3e509bfbce/disable",
                              text=self.get_fixture_content("disable_policy.json"))
 
-        result = action.run("70eec6fe-614f-41b3-af23-ce3e509bfbce","1")
+        result = action.run("70eec6fe-614f-41b3-af23-ce3e509bfbce", "1")
         self.assertEqual(result, expected)

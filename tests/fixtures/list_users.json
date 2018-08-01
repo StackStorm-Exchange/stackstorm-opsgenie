@@ -34,7 +34,10 @@
       },
       "timeZone": "Europe/Moscow",
       "locale": "en_GB",
-      "tags": [ "tag1", "tag3"],
+      "tags": [
+        "tag1",
+        "tag3"
+      ],
       "userAddress": {
         "country": "US",
         "state": "Indiana",
@@ -43,8 +46,13 @@
         "zipCode": "47802"
       },
       "details": {
-        "detail1key": ["detail1dvalue1", "detail1value2"],
-        "detail2key": ["detail2value" ]
+        "detail1key": [
+          "detail1dvalue1",
+          "detail1value2"
+        ],
+        "detail2key": [
+          "detail2value"
+        ]
       },
       "createdAt": "2017-05-12T09:39:14.41Z"
     }

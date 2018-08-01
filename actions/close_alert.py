@@ -60,7 +60,7 @@ class CloseAlertAction(OpsGenieBaseAction):
                 body['note'] = note
 
         data = self._req("POST",
-                         "v2/alerts/"+identifier+"/close",
+                         "v2/alerts/" + identifier + "/close",
                          body=body, payload=parameters)
 
         return data

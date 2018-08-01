@@ -32,6 +32,6 @@ class DisableIntegrationAction(OpsGenieBaseAction):
         method = method
 
         data = self._req(method,
-                         "v2/integrations/"+integrationId+"/disable",
+                         "v2/integrations/" + integrationId + "/disable",
                          payload=payload)
         return data

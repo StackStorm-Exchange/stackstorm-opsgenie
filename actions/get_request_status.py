@@ -32,11 +32,10 @@ class GetRequestStatusAction(OpsGenieBaseAction):
         payload = {}
 
         if request_id:
-
             identifier = urllib.pathname2url(request_id)
 
         data = self._req("GET",
-                         "v2/alerts/requests/"+identifier,
+                         "v2/alerts/requests/" + identifier,
                          payload=payload)
 
         return data

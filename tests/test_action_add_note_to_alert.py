@@ -12,9 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from opsgenie_base_test_case import OpsGenieBaseActionTestCase
-
 from add_note_to_alert import AddNotetoAlertAction
+from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 
 class AddNotetoAlertActionTestCase(OpsGenieBaseActionTestCase):
@@ -44,7 +43,8 @@ class AddNotetoAlertActionTestCase(OpsGenieBaseActionTestCase):
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('POST',
-                             "mock://api.opsgenie.com/v2/alerts/8418d193-2dab-4490-b331-8c02cdd196b7/notes",
+                             "mock://api.opsgenie.com/v2/alerts/8418d193-2dab-4490-b331"
+                             "-8c02cdd196b7/notes",
                              text=self.get_fixture_content("close_alert.json"))
 
         result = action.run("8418d193-2dab-4490-b331-8c02cdd196b7")

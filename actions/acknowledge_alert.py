@@ -54,7 +54,7 @@ class AcknowledgeAlertAction(OpsGenieBaseAction):
             body['note'] = note
 
         data = self._req("POST",
-                         "v2/alerts/"+identifier+"/acknowledge",
+                         "v2/alerts/" + identifier + "/acknowledge",
                          body=body, payload=parameters)
 
         return data

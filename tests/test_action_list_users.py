@@ -12,9 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from opsgenie_base_test_case import OpsGenieBaseActionTestCase
-
 from list_users import ListUsersAction
+from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 
 class ListUsersTestCase(OpsGenieBaseActionTestCase):
@@ -29,7 +28,7 @@ class ListUsersTestCase(OpsGenieBaseActionTestCase):
 
         self.assertRaises(ValueError,
                           action.run,
-                          "100","0","username","asc")
+                          "100", "0", "username", "asc")
 
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
@@ -38,7 +37,7 @@ class ListUsersTestCase(OpsGenieBaseActionTestCase):
 
         self.assertRaises(ValueError,
                           action.run,
-                          "100","0","username","asc")
+                          "100", "0", "username", "asc")
 
     def test_run_api_success(self):
         expected = self.load_json("list_users.json")
@@ -48,5 +47,5 @@ class ListUsersTestCase(OpsGenieBaseActionTestCase):
                              "mock://api.opsgenie.com/v2/users",
                              text=self.get_fixture_content("list_users.json"))
 
-        result = action.run("100","0","username","asc")
+        result = action.run("100", "0", "username", "asc")
         self.assertEqual(result, expected)

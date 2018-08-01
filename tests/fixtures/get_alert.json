@@ -20,22 +20,22 @@
     "source": "Isengard",
     "owner": "morpheus@opsgenie.com",
     "priority": "P5",
-    "responders":[
+    "responders": [
       {
-        "id":"4513b7ea-3b91-438f-b7e4-e3e54af9147c",
-        "type":"team"
+        "id": "4513b7ea-3b91-438f-b7e4-e3e54af9147c",
+        "type": "team"
       },
       {
-        "id":"bb4d9938-c3c2-455d-aaab-727aa701c0d8",
-        "type":"user"
+        "id": "bb4d9938-c3c2-455d-aaab-727aa701c0d8",
+        "type": "user"
       },
       {
-        "id":"aee8a0de-c80f-4515-a232-501c0bc9d715",
-        "type":"escalation"
+        "id": "aee8a0de-c80f-4515-a232-501c0bc9d715",
+        "type": "escalation"
       },
       {
-        "id":"80564037-1984-4f38-b98e-8a1f662df552",
-        "type":"schedule"
+        "id": "80564037-1984-4f38-b98e-8a1f662df552",
+        "type": "schedule"
       }
     ],
     "integration": {
@@ -49,7 +49,10 @@
       "acknowledgedBy": "agent_smith@opsgenie.com",
       "closedBy": "neo@opsgenie.com"
     },
-    "actions": ["Restart", "Ping"],
+    "actions": [
+      "Restart",
+      "Ping"
+    ],
     "entity": "EC2",
     "description": "Example description",
     "details": {

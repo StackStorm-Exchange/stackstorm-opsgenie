@@ -34,7 +34,7 @@ class PingHeartbeatAction(OpsGenieBaseAction):
         method = method
 
         data = self._req(method,
-                         "v2/heartbeats/"+urllib.pathname2url(name)+"/ping",
+                         "v2/heartbeats/" + urllib.pathname2url(name) + "/ping",
                          body=body)
 
         return data

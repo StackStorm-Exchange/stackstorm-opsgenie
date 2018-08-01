@@ -60,13 +60,13 @@ class AddNotetoAlertAction(OpsGenieBaseAction):
                 body['user'] = user
 
         if note:
-            if(len(note)) > 25000:
+            if (len(note)) > 25000:
                 raise ValueError("note is too long, can't be over 100 chars.")
             else:
                 body['note'] = note
 
         data = self._req("POST",
-                         "v2/alerts/"+identifier+"/notes",
+                         "v2/alerts/" + identifier + "/notes",
                          body=body, payload=parameters)
 
         return data

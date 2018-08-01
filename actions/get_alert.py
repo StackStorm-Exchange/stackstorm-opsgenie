@@ -45,7 +45,7 @@ class GetAlertAction(OpsGenieBaseAction):
             raise ValueError("Need one of alert_id or alias.")
 
         data = self._req("GET",
-                         "v2/alerts/"+identifier,
+                         "v2/alerts/" + identifier,
                          payload=payload)
 
         return data

@@ -1,19 +1,22 @@
 {
-    "data": {
-        "name": "Test",
-        "description": "Sample heartbeat description",
-        "interval": 10,
-        "enabled": true,
-        "intervalUnit": "minutes",
-        "expired": true,
-        "ownerTeam": {
-            "id": "6c7be998-fad9-4491-a9a7-d99alp4c0ae5",
-            "name": "ops_team"
-        },
-        "alertMessage": "HeartbeatName is expired",
-        "alertTags": ["heartbeatTag1","heartbeatTag2"],
-        "alertPriority" : "P3"
+  "data": {
+    "name": "Test",
+    "description": "Sample heartbeat description",
+    "interval": 10,
+    "enabled": true,
+    "intervalUnit": "minutes",
+    "expired": true,
+    "ownerTeam": {
+      "id": "6c7be998-fad9-4491-a9a7-d99alp4c0ae5",
+      "name": "ops_team"
     },
-    "took": 0,
-    "requestId": "9bc9e05b-2f07-44b3-9be0-cb0ec0c45533"
+    "alertMessage": "HeartbeatName is expired",
+    "alertTags": [
+      "heartbeatTag1",
+      "heartbeatTag2"
+    ],
+    "alertPriority": "P3"
+  },
+  "took": 0,
+  "requestId": "9bc9e05b-2f07-44b3-9be0-cb0ec0c45533"
 }

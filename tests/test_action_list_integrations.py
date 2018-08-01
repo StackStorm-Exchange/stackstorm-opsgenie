@@ -12,9 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from opsgenie_base_test_case import OpsGenieBaseActionTestCase
-
 from list_integrations import ListIntegrationsAction
+from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 
 class ListIntegrationsActionTestCase(OpsGenieBaseActionTestCase):

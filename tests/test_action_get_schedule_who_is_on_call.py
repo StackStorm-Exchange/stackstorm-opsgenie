@@ -12,9 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from opsgenie_base_test_case import OpsGenieBaseActionTestCase
-
 from get_schedule_who_is_on_call import ScheduleWhoIsOnCallAction
+from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 
 class ScheduleWhoIsOnCallTestCase(OpsGenieBaseActionTestCase):
@@ -28,7 +27,7 @@ class ScheduleWhoIsOnCallTestCase(OpsGenieBaseActionTestCase):
             status_code=400)
         self.assertRaises(ValueError,
                           action.run,
-                          "ScheduleName","name","false","30.08.2018")
+                          "ScheduleName", "name", "false", "30.08.2018")
 
     def test_run_api_404(self):
         action, adapter = self._get_action_status_code(
@@ -37,7 +36,7 @@ class ScheduleWhoIsOnCallTestCase(OpsGenieBaseActionTestCase):
             status_code=404)
         self.assertRaises(ValueError,
                           action.run,
-                          "ScheduleName","name","false","30.08.2018")
+                          "ScheduleName", "name", "false", "30.08.2018")
 
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
@@ -46,7 +45,7 @@ class ScheduleWhoIsOnCallTestCase(OpsGenieBaseActionTestCase):
 
         self.assertRaises(ValueError,
                           action.run,
-                          "ScheduleName","name","false","30.08.2018")
+                          "ScheduleName", "name", "false", "30.08.2018")
 
     def test_run_api_success(self):
         expected = self.load_json("schedule_whoIsOnCall.json")
@@ -56,5 +55,5 @@ class ScheduleWhoIsOnCallTestCase(OpsGenieBaseActionTestCase):
                              "mock://api.opsgenie.com/v2/schedules/ScheduleName/on-calls?name",
                              text=self.get_fixture_content("schedule_whoIsOnCall.json"))
 
-        result = action.run("ScheduleName","name","false","30.08.2018")
+        result = action.run("ScheduleName", "name", "false", "30.08.2018")
         self.assertEqual(result, expected)

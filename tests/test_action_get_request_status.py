@@ -12,9 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from opsgenie_base_test_case import OpsGenieBaseActionTestCase
-
 from get_request_status import GetRequestStatusAction
+from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 
 class GetRequestStatusTestCase(OpsGenieBaseActionTestCase):
@@ -45,7 +44,8 @@ class GetRequestStatusTestCase(OpsGenieBaseActionTestCase):
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('GET',
-                             "mock://api.opsgenie.com/v2/alerts/requests/513085b8-caf3-4f91-aa23-be5fdefc3570",
+                             "mock://api.opsgenie.com/v2/alerts/requests/513085b8-caf3-4f91-aa23"
+                             "-be5fdefc3570",
                              text=self.get_fixture_content("get_request_status.json"))
 
         result = action.run("513085b8-caf3-4f91-aa23-be5fdefc3570")

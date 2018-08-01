@@ -12,8 +12,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from lib.actions import OpsGenieBaseAction
 import urllib
+
+from lib.actions import OpsGenieBaseAction
 
 
 class DeleteAlertAction(OpsGenieBaseAction):
@@ -57,6 +58,6 @@ class DeleteAlertAction(OpsGenieBaseAction):
                 payload["user"] = "user"
 
         data = self._req("DELETE",
-                 "v2/alerts/"+identifier,
-                 payload=payload)
+                         "v2/alerts/" + identifier,
+                         payload=payload)
         return data

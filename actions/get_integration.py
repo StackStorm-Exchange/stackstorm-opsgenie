@@ -11,7 +11,6 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-import urllib
 
 from lib.actions import OpsGenieBaseAction
 
@@ -35,7 +34,7 @@ class GetIntegrationAction(OpsGenieBaseAction):
         payload = {}
 
         data = self._req("GET",
-                         "v2/integrations/"+integration_id,  # v2/alerts/:identifier
+                         "v2/integrations/" + integration_id,  # v2/alerts/:identifier
                          payload=payload)
 
         return data

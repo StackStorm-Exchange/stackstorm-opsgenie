@@ -12,9 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from opsgenie_base_test_case import OpsGenieBaseActionTestCase
-
 from get_alert import GetAlertAction
+from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 
 class GetAlertTestCase(OpsGenieBaseActionTestCase):
@@ -29,7 +28,7 @@ class GetAlertTestCase(OpsGenieBaseActionTestCase):
 
         self.assertRaises(ValueError,
                           action.run,
-                          "8418d193-2dab-4490-b331-8c02cdd196b7","event_573")
+                          "8418d193-2dab-4490-b331-8c02cdd196b7", "event_573")
 
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
@@ -38,15 +37,16 @@ class GetAlertTestCase(OpsGenieBaseActionTestCase):
 
         self.assertRaises(ValueError,
                           action.run,
-                          "8418d193-2dab-4490-b331-8c02cdd196b7","event_573")
+                          "8418d193-2dab-4490-b331-8c02cdd196b7", "event_573")
 
     def test_run_api_success(self):
         expected = self.load_json("get_alert.json")
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('GET',
-                             "mock://api.opsgenie.com/v2/alerts/8418d193-2dab-4490-b331-8c02cdd196b7",
+                             "mock://api.opsgenie.com/v2/alerts/8418d193-2dab-4490-b331"
+                             "-8c02cdd196b7",
                              text=self.get_fixture_content("get_alert.json"))
 
-        result = action.run("8418d193-2dab-4490-b331-8c02cdd196b7","event_573")
+        result = action.run("8418d193-2dab-4490-b331-8c02cdd196b7", "event_573")
         self.assertEqual(result, expected)

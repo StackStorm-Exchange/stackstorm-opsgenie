@@ -1,4 +1,4 @@
-Licensed to the StackStorm, Inc ('StackStorm') under one or more
+# Licensed to the StackStorm, Inc ('StackStorm') under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
 # The ASF licenses this file to You under the Apache License, Version 2.0
@@ -12,9 +12,8 @@ Licensed to the StackStorm, Inc ('StackStorm') under one or more
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from opsgenie_base_test_case import OpsGenieBaseActionTestCase
-
 from create_alert import CreateAlertAction
+from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 
 class CreateAlertsActionTestCase(OpsGenieBaseActionTestCase):

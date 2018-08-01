@@ -17,7 +17,7 @@ from lib.actions import OpsGenieBaseAction
 
 class CreateAlertAction(OpsGenieBaseAction):
     def run(self, message, alias=None,
-            description=None, responders=None, visibleTo=None,  actions=None,
+            description=None, responders=None, visibleTo=None, actions=None,
             tags=None, details=None, entity=None, source="StackStorm",
             priority=None, user=None, note=None
             ):
@@ -28,8 +28,10 @@ class CreateAlertAction(OpsGenieBaseAction):
         - message: Alert text limited to 130 characters
         - alias: Used for alert deduplication.
         - description: Detailed description of the alert.
-        - responders: Teams, users, escalations and schedules that the alert will be routed to send notifications.
-        - visibleTo: Teams and users that the alert will become visible to without sending any notification.
+        - responders: Teams, users, escalations and schedules that the alert will be routed to
+        send notifications.
+        - visibleTo: Teams and users that the alert will become visible to without sending any
+        notification.
         - actions: A comma separated list of actions that can be executed.
         - tags: A comma separated list of labels attached to the alert.
         - details: Set of user defined properties.
@@ -78,7 +80,7 @@ class CreateAlertAction(OpsGenieBaseAction):
 
         if visibleTo:
             for visibleOne in visibleTo:
-                visibleTo_dict={}
+                visibleTo_dict = {}
                 split = visibleOne.rsplit("-", 1)
                 visibleTo_dict["name"] = str(split[0])
                 visibleTo_dict["type"] = str(split[1])

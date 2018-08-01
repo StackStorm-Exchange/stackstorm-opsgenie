@@ -12,9 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from opsgenie_base_test_case import OpsGenieBaseActionTestCase
-
 from enable_integration import EnableIntegrationAction
+from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 
 class EnableIntegrationTestCase(OpsGenieBaseActionTestCase):
@@ -29,7 +28,7 @@ class EnableIntegrationTestCase(OpsGenieBaseActionTestCase):
 
         self.assertRaises(ValueError,
                           action.run,
-                          "32d16e6-020c-46f0-9383-4f0e32603b9d",'POST')
+                          "32d16e6-020c-46f0-9383-4f0e32603b9d", 'POST')
 
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
@@ -38,15 +37,16 @@ class EnableIntegrationTestCase(OpsGenieBaseActionTestCase):
 
         self.assertRaises(ValueError,
                           action.run,
-                          "32d16e6-020c-46f0-9383-4f0e32603b9d",'POST')
+                          "32d16e6-020c-46f0-9383-4f0e32603b9d", 'POST')
 
     def test_run_api_success(self):
         expected = self.load_json("enable_integration.json")
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('POST',
-                             "mock://api.opsgenie.com/v2/integrations/32d16e6-020c-46f0-9383-4f0e32603b9d/enable",
+                             "mock://api.opsgenie.com/v2/integrations/32d16e6-020c-46f0-9383"
+                             "-4f0e32603b9d/enable",
                              text=self.get_fixture_content("enable_integration.json"))
 
-        result = action.run("32d16e6-020c-46f0-9383-4f0e32603b9d",'POST')
+        result = action.run("32d16e6-020c-46f0-9383-4f0e32603b9d", 'POST')
         self.assertEqual(result, expected)

@@ -1,13 +1,13 @@
 {
-    "data": {
-        "name": "opsgenie",
-        "userCount": 1450,
-        "plan": {
-            "maxUserCount": 1500,
-            "name": "Enterprise",
-            "isYearly": true
-        }
-    },
-    "took": 0.084,
-    "requestId": "e5122017-f5c5-4681-88ec-84e2898a61ad"
+  "data": {
+    "name": "opsgenie",
+    "userCount": 1450,
+    "plan": {
+      "maxUserCount": 1500,
+      "name": "Enterprise",
+      "isYearly": true
+    }
+  },
+  "took": 0.084,
+  "requestId": "e5122017-f5c5-4681-88ec-84e2898a61ad"
 }

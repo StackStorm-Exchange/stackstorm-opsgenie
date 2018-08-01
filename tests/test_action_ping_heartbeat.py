@@ -29,7 +29,7 @@ class PingHeartbeatActionTestCase(OpsGenieBaseActionTestCase):
 
         self.assertRaises(ValueError,
                           action.run,
-                          "HeartbeatName","GET")
+                          "HeartbeatName", "GET")
 
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
@@ -37,7 +37,7 @@ class PingHeartbeatActionTestCase(OpsGenieBaseActionTestCase):
             "mock://api.opsgenie.com/v2/heartbeats/HeartbeatName/ping")
         self.assertRaises(ValueError,
                           action.run,
-                          "HeartbeatName","GET")
+                          "HeartbeatName", "GET")
 
     def test_run_api_success(self):
         expected = self.load_json("ping_heartbeat.json")
@@ -47,5 +47,5 @@ class PingHeartbeatActionTestCase(OpsGenieBaseActionTestCase):
                              "mock://api.opsgenie.com/v2/heartbeats/HeartbeatName/ping",
                              text=self.get_fixture_content("ping_heartbeat.json"))
 
-        result = action.run("HeartbeatName","GET")
+        result = action.run("HeartbeatName", "GET")
         self.assertEqual(result, expected)

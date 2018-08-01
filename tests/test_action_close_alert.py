@@ -12,9 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from opsgenie_base_test_case import OpsGenieBaseActionTestCase
-
 from close_alert import CloseAlertAction
+from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 
 class CloseAlertsActionTestCase(OpsGenieBaseActionTestCase):
@@ -44,7 +43,8 @@ class CloseAlertsActionTestCase(OpsGenieBaseActionTestCase):
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('POST',
-                             "mock://api.opsgenie.com/v2/alerts/ac463592-dbd2-4ca3-a651d-48fhf5j5c871/close",
+                             "mock://api.opsgenie.com/v2/alerts/ac463592-dbd2-4ca3-a651d"
+                             "-48fhf5j5c871/close",
                              text=self.get_fixture_content("close_alert.json"))
 
         result = action.run("ac463592-dbd2-4ca3-a651d-48fhf5j5c871")

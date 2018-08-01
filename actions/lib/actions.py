@@ -14,8 +14,8 @@
 # limitations under the License.
 
 import json
-import requests
 
+import requests
 from st2common.runners.base_action import Action
 
 
@@ -44,7 +44,8 @@ class OpsGenieBaseAction(Action):
         """
         kwargs = {}
 
-        headers = {'Content-Type': "application/json", 'Authorization': "GenieKey " + str(self.api_key)}
+        headers = {'Content-Type': "application/json",
+                   'Authorization': "GenieKey " + str(self.api_key)}
         kwargs["headers"] = headers
 
         if payload is None and body is None:

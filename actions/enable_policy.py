@@ -33,6 +33,6 @@ class EnablePolicyAction(OpsGenieBaseAction):
             payload = {}
 
         data = self._req("POST",
-                         "v2/policies/"+policy_id+"/enable",
+                         "v2/policies/" + policy_id + "/enable",
                          payload=payload)
         return data

@@ -16,7 +16,8 @@ from lib.actions import OpsGenieBaseAction
 
 
 class AddHeartbeatAction(OpsGenieBaseAction):
-    def run(self, name, interval=None, interval_unit=None, description=None, enabled=False, ownerTeamName=None, alertMessage=None, alertTags=None,alertPriority=None):
+    def run(self, name, interval=None, interval_unit=None, description=None, enabled=False,
+            ownerTeamName=None, alertMessage=None, alertTags=None, alertPriority=None):
         """
         Add a Heartbeat to OpsGenie
 

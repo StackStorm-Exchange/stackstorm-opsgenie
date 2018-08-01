@@ -17,7 +17,8 @@ from lib.actions import OpsGenieBaseAction
 
 
 class ScheduleWhoIsOnCallAction(OpsGenieBaseAction):
-    def run(self, scheduleIdentifier=None, scheduleIdentifierType=None, flat=None, date=None):
+    def run(self, scheduleIdentifier=None, scheduleIdentifierType=None,
+            flat=None, date=None):
         """
         List current oncall participants of schedule.
 
@@ -39,7 +40,7 @@ class ScheduleWhoIsOnCallAction(OpsGenieBaseAction):
             payload["date"] = date
 
         data = self._req("GET",
-                         "v2/schedules/"+identifier+"/on-calls",
+                         "v2/schedules/" + identifier + "/on-calls",
                          payload=payload)
 
         return data
