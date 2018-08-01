@@ -24,7 +24,7 @@ class GetAccountInfoTestCase(OpsGenieBaseActionTestCase):
     def test_run_api_404(self):
         action, adapter = self._get_action_status_code(
             'GET',
-            "mock://api.opsgenie.com/v1/json/account/info",
+            "mock://api.opsgenie.com/v2/account",
             status_code=404)
 
         self.assertRaises(ValueError,
@@ -33,18 +33,15 @@ class GetAccountInfoTestCase(OpsGenieBaseActionTestCase):
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
             'GET',
-            "mock://api.opsgenie.com/v1/json/account/info")
+            "mock://api.opsgenie.com/v2/account")
         self.assertRaises(ValueError,
                           action.run)
 
     def test_run_api_success(self):
-        expected = {u'name': u'opsgenie',
-                    u'plan': {u'isYearly': True, u'maxUserCount': 1500, u'name': u'Enterprise'},
-                    u'userCount': 1450}
-
+        expected = self.load_json("get_account_info.json")
         action, adapter = self._get_mocked_action()
         adapter.register_uri('GET',
-                             "mock://api.opsgenie.com/v1/json/account/info",
+                             "mock://api.opsgenie.com/v2/account",
                              text=self.get_fixture_content("get_account_info.json"))
 
         result = action.run()

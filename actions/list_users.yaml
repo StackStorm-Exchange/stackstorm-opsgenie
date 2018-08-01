@@ -6,3 +6,28 @@ name: "list_users"
 pack: "opsgenie"
 
 runner_type: "python-script"
+
+parameters:
+  limit:
+    type: "integer"
+    description: "Number of users to retrieve"
+    required: false
+    default: 100
+  offset:
+    type: "integer"
+    description: "Number of users to skip from start"
+    required: false
+    default: 0
+  sort:
+    type: "string"
+    description: "Field to use in sorting."
+    default: "username"
+    enum:
+          - "username"
+          - "fullName"
+  order:
+    type: "string"
+    description: "Direction of sorting. "
+    enum:
+      - "asc"
+      - "desc"

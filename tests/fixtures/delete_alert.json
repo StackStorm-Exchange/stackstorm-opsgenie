@@ -1,4 +1,5 @@
 {
-    "status" : "successful",
-    "code" : 200
+    "result": "Request will be processed",
+    "took": 0.204,
+    "requestId": "43a29c5c-3dbf-4fa4-9c26-f4f71023e120"
 }

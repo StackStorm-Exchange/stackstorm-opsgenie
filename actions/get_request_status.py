@@ -11,24 +11,32 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
+import urllib
 
 from lib.actions import OpsGenieBaseAction
 
 
-class SendHeartbeatAction(OpsGenieBaseAction):
-    def run(self, name):
+class GetRequestStatusAction(OpsGenieBaseAction):
+    def run(self, request_id=None):
         """
-        Snd heartbeat to OpsGenie.
+        Retrieve details of requests in OpsGenie.
 
         Args:
-        - name: Name of the heartbeat.
+        - request_id: Request id of the request.
+
+
+        Returns:
+        - dict: Data from OpsGenie.
         """
 
-        body = {"apiKey": self.api_key,
-                "name": name}
+        payload = {}
 
-        data = self._req("POST",
-                         "v1/json/heartbeat/send",
-                         body=body)
+        if request_id:
+
+            identifier = urllib.pathname2url(request_id)
+
+        data = self._req("GET",
+                         "v2/alerts/requests/"+identifier,
+                         payload=payload)
 
         return data

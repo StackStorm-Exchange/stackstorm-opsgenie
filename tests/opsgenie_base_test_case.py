@@ -69,14 +69,16 @@ class OpsGenieBaseActionTestCase(BaseActionTestCase):
 
         adapter.register_uri(method,
                              url,
+                             headers,
                              text="{'ffo': bar}")
         return action, adapter
 
-    def _get_action_status_code(self, method, url, status_code):
+    def _get_action_status_code(self, method, url,status_code):
         action, adapter = self._get_mocked_action()
         action.API_HOST = "mock://api.opsgenie.com/"
 
         adapter.register_uri(method,
                              url,
+                             headers,
                              status_code=status_code)
         return action, adapter

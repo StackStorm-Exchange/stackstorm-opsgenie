@@ -16,19 +16,23 @@ from lib.actions import OpsGenieBaseAction
 
 
 class DisablePolicyAction(OpsGenieBaseAction):
-    def run(self, name):
+    def run(self, policy_id, team_id):
         """
-        Disable an alert policy in OpsGenie.
+        Enable an alert policy in OpsGenie.
 
         Args:
-        - name: Name of policy.
-
+        - policy_id: Id of policy.
+        - team_id: Id of team that policy belongs
         Returns:
         - dict: Data from OpsGenie.
         """
 
-        payload = {"name": name}
+        if team_id:
+            payload = {"teamId": team_id}
+        else:
+            payload = {}
+
         data = self._req("POST",
-                         "v1/json/policy/disable",
-                         payload)
+                         "v2/policies/"+policy_id+"/disable",
+                         payload=payload)
         return data

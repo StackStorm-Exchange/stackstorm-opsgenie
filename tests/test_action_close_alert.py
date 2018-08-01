@@ -24,7 +24,7 @@ class CloseAlertsActionTestCase(OpsGenieBaseActionTestCase):
     def test_run_api_404(self):
         action, adapter = self._get_action_status_code(
             'POST',
-            "mock://api.opsgenie.com/v1/json/alert/close",
+            "mock://api.opsgenie.com/v2/alerts/ac463592-dbd2-4ca3-a651d-48fhf5j5c871/close",
             status_code=404)
 
         self.assertRaises(ValueError,
@@ -34,7 +34,7 @@ class CloseAlertsActionTestCase(OpsGenieBaseActionTestCase):
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
             'POST',
-            "mock://api.opsgenie.com/v1/json/alert/close")
+            "mock://api.opsgenie.com/v2/alerts/ac463592-dbd2-4ca3-a651d-48fhf5j5c871/close")
         self.assertRaises(ValueError,
                           action.run,
                           "ac463592-dbd2-4ca3-a651d-48fhf5j5c871")
@@ -44,7 +44,7 @@ class CloseAlertsActionTestCase(OpsGenieBaseActionTestCase):
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('POST',
-                             "mock://api.opsgenie.com/v1/json/alert/close",
+                             "mock://api.opsgenie.com/v2/alerts/ac463592-dbd2-4ca3-a651d-48fhf5j5c871/close",
                              text=self.get_fixture_content("close_alert.json"))
 
         result = action.run("ac463592-dbd2-4ca3-a651d-48fhf5j5c871")

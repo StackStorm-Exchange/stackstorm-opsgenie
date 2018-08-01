@@ -16,21 +16,22 @@ from lib.actions import OpsGenieBaseAction
 
 
 class DisableIntegrationAction(OpsGenieBaseAction):
-    def run(self, name):
+    def run(self, integrationId, method):
         """
         Disable an integration in OpsGenie.
 
         Args:
-        - name: Name of integration
+        - integrationId: Id of integration
+        -method: Method for Disable
 
         Returns:
         - dict: Data from OpsGenie
         """
 
-        payload = {"apiKey": self.api_key,
-                   "name": name}
+        payload = {}
+        method = method
 
-        data = self._req("POST",
-                         "v1/json/integration/disable",
+        data = self._req(method,
+                         "v2/integrations/"+integrationId+"/disable",
                          payload=payload)
         return data

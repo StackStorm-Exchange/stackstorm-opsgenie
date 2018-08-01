@@ -24,7 +24,7 @@ class ListAlertsActionTestCase(OpsGenieBaseActionTestCase):
     def test_run_api_404(self):
         action, adapter = self._get_action_status_code(
             'GET',
-            "mock://api.opsgenie.com/v1/json/alert",
+            "mock://api.opsgenie.com/v2/alerts",
             status_code=404)
 
         self.assertRaises(ValueError,
@@ -33,7 +33,7 @@ class ListAlertsActionTestCase(OpsGenieBaseActionTestCase):
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
             'GET',
-            "mock://api.opsgenie.com/v1/json/alert")
+            "mock://api.opsgenie.com/v2/alerts")
         self.assertRaises(ValueError,
                           action.run)
 
@@ -42,7 +42,7 @@ class ListAlertsActionTestCase(OpsGenieBaseActionTestCase):
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('GET',
-                             "mock://api.opsgenie.com/v1/json/alert",
+                             "mock://api.opsgenie.com/v2/alerts",
                              text=self.get_fixture_content("list_alerts.json"))
 
         result = action.run()

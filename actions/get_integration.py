@@ -11,22 +11,31 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
+import urllib
 
 from lib.actions import OpsGenieBaseAction
 
 
-class ListHeartbeatsAction(OpsGenieBaseAction):
-    def run(self):
+class GetIntegrationAction(OpsGenieBaseAction):
+    def run(self, integration_id=None):
         """
-        List details of heartbeat monitors in OpsGenie.
+        Retrieve details of alerts in OpsGenie.
+
+        Args:
+        - alert_id: Alert id of the alert.
+        -alias: Alias of the alert.
+
+        Raises:
+        - ValueError: If alert_id and alias are None.
 
         Returns:
         - dict: Data from OpsGenie.
         """
 
-        payload = {"apiKey": self.api_key}
+        payload = {}
 
         data = self._req("GET",
-                         "v1/json/heartbeat",
+                         "v2/integrations/"+integration_id,  # v2/alerts/:identifier
                          payload=payload)
+
         return data

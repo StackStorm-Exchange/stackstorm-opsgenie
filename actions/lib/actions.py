@@ -39,10 +39,13 @@ class OpsGenieBaseAction(Action):
         return "{}/{}".format(self.API_HOST.rstrip("/"),
                               uri)
 
-    def _req(self, method, uri, payload=None, body=None):
+    def _req(self, method, uri, payload=None, body=None, params=None):
         """
         """
         kwargs = {}
+
+        headers = {'Content-Type': "application/json", 'Authorization': "GenieKey " + str(self.api_key)}
+        kwargs["headers"] = headers
 
         if payload is None and body is None:
             raise ValueError("Need body or payload")

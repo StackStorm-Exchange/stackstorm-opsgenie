@@ -13,6 +13,7 @@
 # See the License for the specific language governing permissions and
 
 from lib.actions import OpsGenieBaseAction
+import urllib
 
 
 class DeleteAlertAction(OpsGenieBaseAction):
@@ -33,21 +34,29 @@ class DeleteAlertAction(OpsGenieBaseAction):
         - ValueError: If alert_id and alias are None.
         """
 
-        payload = {"apiKey": self.api_key,
-                   "source": source}
+        payload = {}
+        if source:
+            if len(source) > 100:
+                raise ValueError("source is too long, can't be over 100 chars.")
+            else:
+                payload['source'] = source
 
-        if alias:
-            payload["alias"] = alias
-        elif alert_id:
-            payload["id"] = alert_id
+        if alert_id:
+            identifier = urllib.pathname2url(alert_id)
+            payload['identifierType'] = 'id'
+        elif alias:
+            identifier = urllib.pathname2url(alias)
+            payload['identifierType'] = 'alias'
         else:
             raise ValueError("Need one of alert_id or alias.")
 
         if user:
-            payload['user'] = user
+            if len(user) > 100:
+                raise ValueError("User is too long, can't be over 100 chars.")
+            else:
+                payload["user"] = "user"
 
         data = self._req("DELETE",
-                         "v1/json/alert",
-                         payload=payload)
-
+                 "v2/alerts/"+identifier,
+                 payload=payload)
         return data

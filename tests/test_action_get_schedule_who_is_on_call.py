@@ -24,34 +24,37 @@ class ScheduleWhoIsOnCallTestCase(OpsGenieBaseActionTestCase):
     def test_run_api_invalid_ley(self):
         action, adapter = self._get_action_status_code(
             "GET",
-            "mock://api.opsgenie.com/v1/json/schedule/whoIsOnCall",
+            "mock://api.opsgenie.com/v2/schedules/ScheduleName/on-calls?name",
             status_code=400)
         self.assertRaises(ValueError,
-                          action.run)
+                          action.run,
+                          "ScheduleName","name","false","30.08.2018")
 
     def test_run_api_404(self):
         action, adapter = self._get_action_status_code(
             "GET",
-            "mock://api.opsgenie.com/v1/json/schedule/whoIsOnCall",
+            "mock://api.opsgenie.com/v2/schedules/ScheduleName/on-calls?name",
             status_code=404)
         self.assertRaises(ValueError,
-                          action.run)
+                          action.run,
+                          "ScheduleName","name","false","30.08.2018")
 
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
             "GET",
-            "mock://api.opsgenie.com/v1/json/schedule/whoIsOnCall")
+            "mock://api.opsgenie.com/v2/schedules/ScheduleName/on-calls?name")
 
         self.assertRaises(ValueError,
-                          action.run)
+                          action.run,
+                          "ScheduleName","name","false","30.08.2018")
 
     def test_run_api_success(self):
         expected = self.load_json("schedule_whoIsOnCall.json")
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('GET',
-                             "mock://api.opsgenie.com/v1/json/schedule/whoIsOnCall",
+                             "mock://api.opsgenie.com/v2/schedules/ScheduleName/on-calls?name",
                              text=self.get_fixture_content("schedule_whoIsOnCall.json"))
 
-        result = action.run()
+        result = action.run("ScheduleName","name","false","30.08.2018")
         self.assertEqual(result, expected)

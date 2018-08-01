@@ -8,7 +8,15 @@ pack: "opsgenie"
 runner_type: "python-script"
 
 parameters:
-  name:
+  integrationId:
     type: "string"
-    description: "Intergration to Disable"
+    description: "Integration to Enable"
     required: true
+  method:
+      type: "string"
+      description: "Method for enable request"
+      enum:
+        - "POST"
+        - "PUT"
+        - "PATCH"
+      required: true

@@ -1,0 +1,44 @@
+{
+  "code": 200,
+  "data": {
+    "_readOnly": [
+      "isAdvanced",
+      "isGlobal"
+    ],
+    "alertActions": [
+      "Create",
+      "Acknowledge",
+      "UnAcknowledge",
+      "Snooze",
+      "EscalateToNext",
+      "AddNote",
+      "AddRecipient",
+      "AddTeam",
+      "AddTags",
+      "RemoveTags",
+      "Close",
+      "Delete",
+      "CustomAction",
+      "AssignOwnership",
+      "TakeOwnership"
+    ],
+    "alertFilter": {
+      "conditionMatchType": "Match All",
+      "conditions": []
+    },
+    "sendAlertActions": true,
+    "enabled": false,
+    "allowConfigurationAccess": false,
+    "allowWriteAccess": true,
+    "ignoreRecipientsFromPayload": false,
+    "ignoreTeamsFromPayload": false,
+    "isAdvanced": false,
+    "recipients": [],
+    "suppressNotifications": false,
+    "isGlobal": true,
+    "name": "Marid",
+    "type": "Marid"
+  },
+  "took": 0,
+  "requestId": "d6e1300e-6ec8-4eeb-9c8e-096799424c1b"
+}

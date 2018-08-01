@@ -16,7 +16,7 @@ from lib.actions import OpsGenieBaseAction
 
 
 class AddHeartbeatAction(OpsGenieBaseAction):
-    def run(self, name, interval=None, interval_unit=None, description=None, enabled=False):
+    def run(self, name, interval=None, interval_unit=None, description=None, enabled=False, ownerTeamName=None, alertMessage=None, alertTags=None,alertPriority=None):
         """
         Add a Heartbeat to OpsGenie
 
@@ -26,14 +26,23 @@ class AddHeartbeatAction(OpsGenieBaseAction):
         - intervalUnit: interval specified as minutes, hours or days.
         - description: An optional description of the heartbeat.
         - enabled: Enable/disable heartbeat monitoring.
+        - ownerTeam: Owner team of the heartbeat, consisting id and/or name of the owner team
+        - alertMessage: Specifies the alert message for heartbeat expiration alert.
+        - alertTags: Specifies the alert tags for heartbeat expiration alert.
+        - alertPriority: Specifies the alert priority for heartbeat expiration alert.
 
         Returns:
         - dict: Data from OpsGenie
         """
 
-        body = {"apiKey": self.api_key,
-                "name": name,
-                "enabled": enabled}
+        body = {"enabled": enabled}
+        ownerTeam = {}
+
+        if name:
+            if len(name) > 200:
+                raise ValueError("name is too long, can't be over 200 chars.")
+            else:
+                body["name"] = name
 
         if interval:
             body["interval"] = interval
@@ -42,10 +51,29 @@ class AddHeartbeatAction(OpsGenieBaseAction):
             body["intervalUnit"] = interval_unit
 
         if description:
-            body["description"] = description
+            if len(description) > 10000:
+                raise ValueError("name is too long, can't be over 200 chars.")
+            else:
+                body["description"] = description
+
+        if ownerTeamName:
+            ownerTeam["name"] = ownerTeamName
+            body["ownerTeam"] = ownerTeam
+
+        if alertMessage:
+            if len(alertMessage) > 130:
+                raise ValueError("alertMessage is too long, can't be over 130 chars.")
+            else:
+                body["alertMessage"] = alertMessage
+
+        if alertTags:
+            body["alertTags"] = alertTags
+
+        if alertPriority:
+            body["alertPriority"] = alertPriority
 
         data = self._req("POST",
-                         "v1/json/heartbeat",
+                         "v2/heartbeats",
                          body=body)
 
         return data

@@ -1,0 +1,12 @@
+{
+    "code": 200,
+    "data": {
+        "id": "74410a0a-f57e-4f0a-bc87-cf6c96bbb2b9",
+        "name": "API Integration76",
+        "enabled": true,
+        "teamId": "",
+        "type": "API"
+    },
+    "took": 0,
+    "requestId": "cc32c4e5-de24-4fa3-a9d5-aa4883d11f8e"
+}

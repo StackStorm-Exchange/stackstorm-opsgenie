@@ -1,4 +1,4 @@
-# Licensed to the StackStorm, Inc ('StackStorm') under one or more
+Licensed to the StackStorm, Inc ('StackStorm') under one or more
 # contributor license agreements.  See the NOTICE file distributed with
 # this work for additional information regarding copyright ownership.
 # The ASF licenses this file to You under the Apache License, Version 2.0
@@ -24,7 +24,7 @@ class CreateAlertsActionTestCase(OpsGenieBaseActionTestCase):
     def test_run_api_404(self):
         action, adapter = self._get_action_status_code(
             'POST',
-            "mock://api.opsgenie.com/v1/json/alert",
+            "mock://api.opsgenie.com/v2/alerts",
             status_code=404)
 
         self.assertRaises(ValueError,
@@ -34,18 +34,18 @@ class CreateAlertsActionTestCase(OpsGenieBaseActionTestCase):
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
             'POST',
-            "mock://api.opsgenie.com/v1/json/alert")
+            "mock://api.opsgenie.com/v2/alerts")
         self.assertRaises(ValueError,
                           action.run,
                           "test")
 
     def test_run_api_success(self):
-        expected = self.load_json("close_alert.json")
+        expected = self.load_json("create_alert.json")
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('POST',
-                             "mock://api.opsgenie.com/v1/json/alert",
-                             text=self.get_fixture_content("close_alert.json"))
+                             "mock://api.opsgenie.com/v2/alerts",
+                             text=self.get_fixture_content("create_alert.json"))
 
         result = action.run("test")
         self.assertEqual(result, expected)

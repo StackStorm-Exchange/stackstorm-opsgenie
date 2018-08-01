@@ -24,7 +24,7 @@ class DeleteHeartbeatTestCase(OpsGenieBaseActionTestCase):
     def test_run_api_404(self):
         action, adapter = self._get_action_status_code(
             'DELETE',
-            "mock://api.opsgenie.com/v1/json/heartbeat",
+            "mock://api.opsgenie.com/v2/heartbeats/Test",
             status_code=404)
 
         self.assertRaises(ValueError,
@@ -34,19 +34,19 @@ class DeleteHeartbeatTestCase(OpsGenieBaseActionTestCase):
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
             'DELETE',
-            "mock://api.opsgenie.com/v1/json/heartbeat")
+            "mock://api.opsgenie.com/v2/heartbeats/Test")
 
         self.assertRaises(ValueError,
                           action.run,
                           "Test")
 
     def test_run_api_success(self):
-        expected = self.load_json("enable_heartbeat.json")
+        expected = self.load_json("delete_heartbeat.json")
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('DELETE',
-                             "mock://api.opsgenie.com/v1/json/heartbeat",
-                             text=self.get_fixture_content("enable_heartbeat.json"))
+                             "mock://api.opsgenie.com/v2/heartbeats/Test",
+                             text=self.get_fixture_content("delete_heartbeat.json"))
 
         result = action.run("Test")
         self.assertEqual(result, expected)

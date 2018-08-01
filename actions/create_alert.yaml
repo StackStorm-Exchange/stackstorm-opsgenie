@@ -10,24 +10,49 @@ runner_type: "python-script"
 parameters:
   message:
     type: "string"
-    description: "Alert ID to close."
+    description: "Message of the alert."
     required: true
-  teams:
-    type: "array"
-    description: "List of team names which will be responsible for the alert."
   alias:
-    type: "string"
-    description: "Alert ID to close."
-    default: ~
+      type: "string"
+      description: "Client-defined identifier of the alert."
+      default: ~
+  description:
+      type: "string"
+      description: "Detailed description of the alert."
+      default: ~
+  responders:
+    type: "array"
+    description: "Teams, users, escalations and schedules that the alert will be routed to send notifications.
+                 Please use 'name of sth'-'type of sth' format for each responder.(ex: Engineering Team A-team)"
+  visibleTo:
+    type: "array"
+    description: "Teams, users, escalations and schedules that the alert will be routed to send notifications.
+                 Please use 'name of sth'-'type of sth' format for each responder.(ex: Engineering Team A-team)"
+  tags:
+    type: "array"
+    description: "Tags of the alert."
+    required: false
+  actions:
+      type: "array"
+      description: "Custom actions that will be available for the alert."
+      required: false
+  entity:
+      type: "string"
+      description: "Entity field of the alert that is generally used to specify which domain alert is related to."
+      default: ~
   user:
     type: "string"
     description: "Default owner of the execution."
     default: ~
-  note: 
+  note:
     type: "string"
     description: "Additional alert note"
     default: ~
   source:
     type: "string"
-    description: "User defined field to specify source of close action."
+    description: "User defined field to specify source of create action."
     default: "StackStorm"
+  priority:
+    type: "string"
+    description: "Priority level of the alert."
+    default: "P3"

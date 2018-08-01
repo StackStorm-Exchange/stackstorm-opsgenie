@@ -11,23 +11,35 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
+import urllib
 
 from lib.actions import OpsGenieBaseAction
 
 
 class ScheduleWhoIsOnCallAction(OpsGenieBaseAction):
-    def run(self):
+    def run(self, scheduleIdentifier=None, scheduleIdentifierType=None, flat=None, date=None):
         """
-        List current oncall participants of all schedules.
+        List current oncall participants of schedule.
 
         Returns:
         - dict: Data from OpsGenie.
         """
 
-        payload = {"apiKey": self.api_key}
+        payload = {}
+        if scheduleIdentifier:
+            identifier = urllib.pathname2url(scheduleIdentifier)
+
+        if scheduleIdentifierType:
+            payload["scheduleIdentifierType"] = scheduleIdentifierType
+
+        if flat:
+            payload["flat"] = flat
+
+        if date:
+            payload["date"] = date
 
         data = self._req("GET",
-                         "v1/json/schedule/whoIsOnCall",
+                         "v2/schedules/"+identifier+"/on-calls",
                          payload=payload)
 
         return data

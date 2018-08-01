@@ -8,7 +8,11 @@ pack: "opsgenie"
 runner_type: "python-script"
 
 parameters:
-  name:
+  policy_id:
     type: "string"
-    description: "Policy to Disable"
+    description: "Policy to Enable"
     required: true
+  team_id:
+    type: "string"
+    description: " The identifier of the team that this policy belongs."
+    default: ~

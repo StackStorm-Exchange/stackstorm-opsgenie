@@ -24,7 +24,7 @@ class GetAlertCountActionTestCase(OpsGenieBaseActionTestCase):
     def test_run_api_404(self):
         action, adapter = self._get_action_status_code(
             'GET',
-            "mock://api.opsgenie.com/v1/json/alert/count",
+            "mock://api.opsgenie.com/v2/alerts/count",
             status_code=404)
 
         self.assertRaises(ValueError,
@@ -33,7 +33,7 @@ class GetAlertCountActionTestCase(OpsGenieBaseActionTestCase):
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
             'GET',
-            "mock://api.opsgenie.com/v1/json/alert/count")
+            "mock://api.opsgenie.com/v2/alerts/count")
         self.assertRaises(ValueError,
                           action.run)
 
@@ -42,7 +42,7 @@ class GetAlertCountActionTestCase(OpsGenieBaseActionTestCase):
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('GET',
-                             "mock://api.opsgenie.com/v1/json/alert/count",
+                             "mock://api.opsgenie.com/v2/alerts/count",
                              text=self.get_fixture_content("get_alert_count.json"))
 
         result = action.run()

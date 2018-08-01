@@ -14,39 +14,39 @@
 
 from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
-from send_heartbeat import SendHeartbeatAction
+from update_heartbeat import UpdateHeartbeatAction
 
 
-class SendHeartbeatTestCase(OpsGenieBaseActionTestCase):
+class UpdateHeartbeatTestCase(OpsGenieBaseActionTestCase):
     __test__ = True
-    action_cls = SendHeartbeatAction
+    action_cls = UpdateHeartbeatAction
 
     def test_run_api_404(self):
         action, adapter = self._get_action_status_code(
-            'POST',
-            "mock://api.opsgenie.com/v1/json/heartbeat/send",
+            'PATCH',
+            "mock://api.opsgenie.com/v2/heartbeats/HeartbeatName",
             status_code=404)
 
         self.assertRaises(ValueError,
                           action.run,
-                          "Test")
+                          "HeartbeatName")
 
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
-            'POST',
-            "mock://api.opsgenie.com/v1/json/heartbeat/send")
+            'PATCH',
+            "mock://api.opsgenie.com/v2/heartbeats/HeartbeatName")
 
         self.assertRaises(ValueError,
                           action.run,
-                          "Test")
+                          "HeartbeatName")
 
     def test_run_api_success(self):
-        expected = self.load_json("send_heartbeat.json")
+        expected = self.load_json("update_heartbeat.json")
 
         action, adapter = self._get_mocked_action()
-        adapter.register_uri('POST',
-                             "mock://api.opsgenie.com/v1/json/heartbeat/send",
-                             text=self.get_fixture_content("send_heartbeat.json"))
+        adapter.register_uri('PATCH',
+                             "mock://api.opsgenie.com/v2/heartbeats/HeartbeatName",
+                             text=self.get_fixture_content("update_heartbeat.json"))
 
-        result = action.run("Test")
+        result = action.run("HeartbeatName")
         self.assertEqual(result, expected)

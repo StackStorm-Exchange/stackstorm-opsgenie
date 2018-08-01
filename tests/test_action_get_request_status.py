@@ -14,37 +14,39 @@
 
 from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
-from list_heartbeats import ListHeartbeatsAction
+from get_request_status import GetRequestStatusAction
 
 
-class ListHeartbeatsTestCase(OpsGenieBaseActionTestCase):
+class GetRequestStatusTestCase(OpsGenieBaseActionTestCase):
     __test__ = True
-    action_cls = ListHeartbeatsAction
+    action_cls = GetRequestStatusAction
 
     def test_run_api_404(self):
         action, adapter = self._get_action_status_code(
             'GET',
-            "mock://api.opsgenie.com/v1/json/heartbeat",
+            "mock://api.opsgenie.com/v2/alerts/requests/513085b8-caf3-4f91-aa23-be5fdefc3570",
             status_code=404)
 
         self.assertRaises(ValueError,
-                          action.run)
+                          action.run,
+                          "513085b8-caf3-4f91-aa23-be5fdefc3570")
 
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
             'GET',
-            "mock://api.opsgenie.com/v1/json/heartbeat")
+            "mock://api.opsgenie.com/v2/alerts/requests/513085b8-caf3-4f91-aa23-be5fdefc3570")
 
         self.assertRaises(ValueError,
-                          action.run)
+                          action.run,
+                          "513085b8-caf3-4f91-aa23-be5fdefc3570")
 
     def test_run_api_success(self):
-        expected = self.load_json("list_heartbeat.json")
+        expected = self.load_json("get_request_status.json")
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('GET',
-                             "mock://api.opsgenie.com/v1/json/heartbeat",
-                             text=self.get_fixture_content("list_heartbeat.json"))
+                             "mock://api.opsgenie.com/v2/alerts/requests/513085b8-caf3-4f91-aa23-be5fdefc3570",
+                             text=self.get_fixture_content("get_request_status.json"))
 
-        result = action.run()
+        result = action.run("513085b8-caf3-4f91-aa23-be5fdefc3570")
         self.assertEqual(result, expected)

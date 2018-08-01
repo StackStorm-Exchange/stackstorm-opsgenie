@@ -14,17 +14,17 @@
 
 from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
-from list_groups import ListGroupsAction
+from list_integrations import ListIntegrationsAction
 
 
-class ListGroupsTestCase(OpsGenieBaseActionTestCase):
+class ListIntegrationsActionTestCase(OpsGenieBaseActionTestCase):
     __test__ = True
-    action_cls = ListGroupsAction
+    action_cls = ListIntegrationsAction
 
     def test_run_api_404(self):
         action, adapter = self._get_action_status_code(
             'GET',
-            "mock://api.opsgenie.com/v1/json/group",
+            "mock://api.opsgenie.com/v2/integrations",
             status_code=404)
 
         self.assertRaises(ValueError,
@@ -33,17 +33,17 @@ class ListGroupsTestCase(OpsGenieBaseActionTestCase):
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
             'GET',
-            "mock://api.opsgenie.com/v1/json/group")
+            "mock://api.opsgenie.com/v2/integrations")
         self.assertRaises(ValueError,
                           action.run)
 
     def test_run_api_success(self):
-        expected = self.load_json("list_groups.json")
+        expected = self.load_json("list_integration.json")
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('GET',
-                             "mock://api.opsgenie.com/v1/json/group",
-                             text=self.get_fixture_content("list_groups.json"))
+                             "mock://api.opsgenie.com/v2/integrations",
+                             text=self.get_fixture_content("list_integration.json"))
 
         result = action.run()
         self.assertEqual(result, expected)
