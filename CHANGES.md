@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3
+
+- Update actions and action tests for OpsGenie v2.
+
 ## 0.2.1
 
 - Added example configuration file
