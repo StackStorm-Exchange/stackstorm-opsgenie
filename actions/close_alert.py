@@ -11,6 +11,7 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
+import urllib
 
 from lib.actions import OpsGenieBaseAction
 
@@ -34,24 +35,32 @@ class CloseAlertAction(OpsGenieBaseAction):
         - ValueError: If alias and alert_id are None.
         """
 
-        body = {"apiKey": self.api_key,
-                "source": source}
+        body = {"source": source}
+        parameters = {}
 
-        if alias:
-            body["alias"] = alias
-        elif alert_id:
-            body["id"] = alert_id
+        if alert_id:
+            identifier = urllib.pathname2url(alert_id)  # default
+            parameters['identifierType'] = 'id'
+        elif alias:
+            identifier = urllib.pathname2url(alias)
+            parameters['identifierType'] = 'alias'
         else:
             raise ValueError("Need one of alias or alert_id to be set.")
 
         if user:
-            body['user'] = user
+            if len(user) > 100:
+                raise ValueError("user is too long, can't be over 100 chars.")
+            else:
+                body['user'] = user
 
         if note:
-            body['note'] = note
+            if len(note) > 25000:
+                raise ValueError("note is too long, can't be over 25000 chars.")
+            else:
+                body['note'] = note
 
         data = self._req("POST",
-                         "v1/json/alert/close",
-                         body=body)
+                         "v2/alerts/" + identifier + "/close",
+                         body=body, payload=parameters)
 
         return data

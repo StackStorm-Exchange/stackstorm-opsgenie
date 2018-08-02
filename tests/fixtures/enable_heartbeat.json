@@ -1,4 +1,9 @@
 {
-    "status" : "success",
-    "code" : 200
+  "data": {
+    "name": "HeartbeatName",
+    "enabled": true,
+    "expired": false
+  },
+  "took": 0,
+  "requestId": "ee0ec5ae-0afc-49ab-862f-3c62612612f0"
 }

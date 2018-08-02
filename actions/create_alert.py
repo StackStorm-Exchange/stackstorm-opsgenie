@@ -16,24 +16,28 @@ from lib.actions import OpsGenieBaseAction
 
 
 class CreateAlertAction(OpsGenieBaseAction):
-    def run(self, message, teams=None, alias=None,
-            description=None, recipients=None, actions=None,
-            source="StackStorm", tags=None, details=None,
-            entity=None, user=None, note=None):
+    def run(self, message, alias=None,
+            description=None, responders=None, visibleTo=None, actions=None,
+            tags=None, details=None, entity=None, source="StackStorm",
+            priority=None, user=None, note=None
+            ):
         """
         Create alert in OpsGenie.
 
         Args:
         - message: Alert text limited to 130 characters
-        - teams: List of team names which will be responsible for the alert
         - alias: Used for alert deduplication.
-        - description: detailed description of the alert.
-        - recipients: Optional user, group, schedule or escalation names.
+        - description: Detailed description of the alert.
+        - responders: Teams, users, escalations and schedules that the alert will be routed to
+        send notifications.
+        - visibleTo: Teams and users that the alert will become visible to without sending any
+        notification.
         - actions: A comma separated list of actions that can be executed.
-        - source: Field to specify source of alert.
         - tags: A comma separated list of labels attached to the alert.
         - details: Set of user defined properties.
         - entity: The entity the alert is related to.
+        - source: Field to specify source of alert.
+        - priority: Priority level of the alert.
         - user: Default owner of the execution.
         - note: Additional alert note.
 
@@ -44,15 +48,14 @@ class CreateAlertAction(OpsGenieBaseAction):
         - ValueError: If description or message is too long.
         """
 
+        responders_list = []
+        visibleTo_list = []
+
         if len(message) > 130:
             raise ValueError("Message length ({}) is over 130 chars".format(
                 len(message)))
-
-        body = {"apiKey": self.api_key,
-                "message": message}
-
-        if teams:
-            body["teams"] = teams
+        else:
+            body = {"message": message}
 
         if alias:
             if len(alias) > 512:
@@ -66,29 +69,51 @@ class CreateAlertAction(OpsGenieBaseAction):
             else:
                 body["description"] = description
 
-        if recipients:
-            body["recipients"] = recipients
+        if responders:
+            for responder in responders:
+                responder_dict = {}
+                splitted = responder.rsplit("-", 1)
+                responder_dict["name"] = str(splitted[0])
+                responder_dict["type"] = str(splitted[1])
+                responders_list.append(responder_dict)
+            body["responders"] = responders_list
+
+        if visibleTo:
+            for visibleOne in visibleTo:
+                visibleTo_dict = {}
+                split = visibleOne.rsplit("-", 1)
+                visibleTo_dict["name"] = str(split[0])
+                visibleTo_dict["type"] = str(split[1])
+                visibleTo_list.append(visibleTo_dict)
+
+            body["visibleTo"] = visibleTo_list
 
         if actions:
             body["actions"] = actions
-
-        if source:
-            if len(source) > 512:
-                raise ValueError("Source is too long, can't be over 512 chars.")
-            else:
-                body["source"] = source
 
         if tags:
             body["tags"] = tags
 
         if details:
-            body["details"] = details
+            if len(details) > 8000:
+                raise ValueError("Details is too long, can't be over 8000 chars.")
+            else:
+                body["details"] = details
 
         if entity:
             if len(entity) > 512:
                 raise ValueError("Entity is too long, can't be over 512 chars.")
             else:
                 body["entity"] = entity
+
+        if source:
+            if len(source) > 100:
+                raise ValueError("Source is too long, can't be over 100 chars.")
+            else:
+                body["source"] = source
+
+        if priority:
+            body["priority"] = priority
 
         if user:
             if len(user) > 100:
@@ -97,10 +122,13 @@ class CreateAlertAction(OpsGenieBaseAction):
                 body['user'] = user
 
         if note:
-            body['note'] = note
+            if len(note) > 25000:
+                raise ValueError("Note is too long, can't be over 25000 chars.")
+            else:
+                body['note'] = note
 
         data = self._req("POST",
-                         "v1/json/alert",
+                         "v2/alerts",
                          body=body)
 
         return data

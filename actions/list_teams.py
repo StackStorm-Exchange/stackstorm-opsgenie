@@ -23,9 +23,9 @@ class ListTeamsAction(OpsGenieBaseAction):
         Returns:
         - dict: Data from OpsGenie.
         """
-        payload = {"apiKey": self.api_key}
+        payload = {}
 
         data = self._req("GET",
-                         "v1/json/team",
+                         "v2/teams",
                          payload=payload)
         return data

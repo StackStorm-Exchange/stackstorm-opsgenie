@@ -1,17 +1,21 @@
 {
-    "teams": [{
-	"id": "ac463592-dbd2-4ca3-a651d-48fhf5j5c871",
-	"name": "network",
-	"members": [{
-	    "user": "john.smith@opsgenie.com",
-	    "role": "admin"
-	    }]
-	}, {
-	    "id": "fg463552-dvf2-4ca3-a4315-48fhf5j67875",
-	    "name": "database",
-	    "members": [{
-		"user": "eric.boston@opsgenie.com",
-		"role": "user"
-		}]
-	    }]
+  "data": [
+    {
+      "id": "90098alp9-f0e3-41d3-a060-0ea895027630",
+      "name": "ops_team",
+      "description": ""
+    },
+    {
+      "id": "a30alp45-65bf-422f-9d41-67b10a67282a",
+      "name": "TeamName2",
+      "description": "Description"
+    },
+    {
+      "id": "c569c016-alp9-4e20-8a28-bd5dc33b798e",
+      "name": "TeamName",
+      "description": ""
+    }
+  ],
+  "took": 1.08,
+  "requestId": "9cbfalp7-53f5-41ef-a360-be01277a903d"
 }

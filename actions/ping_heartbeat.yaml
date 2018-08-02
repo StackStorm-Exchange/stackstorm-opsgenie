@@ -1,0 +1,24 @@
+---
+description: "Ping an Heartbeat in OpsGenie"
+enabled: true
+entry_point: "ping_heartbeat.py"
+name: "ping_heartbeat"
+pack: "opsgenie"
+
+runner_type: "python-script"
+
+
+parameters:
+  name:
+    type: "string"
+    description: "Name of the heartbeat."
+    required: true
+  method:
+    type: "string"
+    description: "Method for ping request"
+    enum:
+      - "GET"
+      - "POST"
+      - "PUT"
+      - "PATCH"
+    required: true

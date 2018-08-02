@@ -14,39 +14,38 @@
 
 from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
-from send_heartbeat import SendHeartbeatAction
+from ping_heartbeat import PingHeartbeatAction
 
 
-class SendHeartbeatTestCase(OpsGenieBaseActionTestCase):
+class PingHeartbeatActionTestCase(OpsGenieBaseActionTestCase):
     __test__ = True
-    action_cls = SendHeartbeatAction
+    action_cls = PingHeartbeatAction
 
     def test_run_api_404(self):
         action, adapter = self._get_action_status_code(
-            'POST',
-            "mock://api.opsgenie.com/v1/json/heartbeat/send",
+            'GET',
+            "mock://api.opsgenie.com/v2/heartbeats/HeartbeatName/ping",
             status_code=404)
 
         self.assertRaises(ValueError,
                           action.run,
-                          "Test")
+                          "HeartbeatName", "GET")
 
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
-            'POST',
-            "mock://api.opsgenie.com/v1/json/heartbeat/send")
-
+            'GET',
+            "mock://api.opsgenie.com/v2/heartbeats/HeartbeatName/ping")
         self.assertRaises(ValueError,
                           action.run,
-                          "Test")
+                          "HeartbeatName", "GET")
 
     def test_run_api_success(self):
-        expected = self.load_json("send_heartbeat.json")
+        expected = self.load_json("ping_heartbeat.json")
 
         action, adapter = self._get_mocked_action()
-        adapter.register_uri('POST',
-                             "mock://api.opsgenie.com/v1/json/heartbeat/send",
-                             text=self.get_fixture_content("send_heartbeat.json"))
+        adapter.register_uri('GET',
+                             "mock://api.opsgenie.com/v2/heartbeats/HeartbeatName/ping",
+                             text=self.get_fixture_content("ping_heartbeat.json"))
 
-        result = action.run("Test")
+        result = action.run("HeartbeatName", "GET")
         self.assertEqual(result, expected)

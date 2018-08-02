@@ -12,9 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from opsgenie_base_test_case import OpsGenieBaseActionTestCase
-
 from add_heartbeat import AddHeartbeatAction
+from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 
 class AddHeartbeatTestCase(OpsGenieBaseActionTestCase):
@@ -24,7 +23,7 @@ class AddHeartbeatTestCase(OpsGenieBaseActionTestCase):
     def test_run_api_404(self):
         action, adapter = self._get_action_status_code(
             'POST',
-            "mock://api.opsgenie.com/v1/json/heartbeat",
+            "mock://api.opsgenie.com/v2/heartbeats",
             status_code=404)
 
         self.assertRaises(ValueError,
@@ -34,7 +33,7 @@ class AddHeartbeatTestCase(OpsGenieBaseActionTestCase):
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
             'POST',
-            "mock://api.opsgenie.com/v1/json/heartbeat")
+            "mock://api.opsgenie.com/v2/heartbeats")
 
         self.assertRaises(ValueError,
                           action.run,
@@ -45,7 +44,7 @@ class AddHeartbeatTestCase(OpsGenieBaseActionTestCase):
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('POST',
-                             "mock://api.opsgenie.com/v1/json/heartbeat",
+                             "mock://api.opsgenie.com/v2/heartbeats",
                              text=self.get_fixture_content("add_heartbeat.json"))
 
         result = action.run("Test")

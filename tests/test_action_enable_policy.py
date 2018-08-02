@@ -12,9 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from opsgenie_base_test_case import OpsGenieBaseActionTestCase
-
 from enable_policy import EnablePolicyAction
+from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 
 class EnablePolicyTestCase(OpsGenieBaseActionTestCase):
@@ -24,29 +23,30 @@ class EnablePolicyTestCase(OpsGenieBaseActionTestCase):
     def test_run_api_404(self):
         action, adapter = self._get_action_status_code(
             'POST',
-            "mock://api.opsgenie.com/v1/json/policy/enable",
+            "mock://api.opsgenie.com/v2/policies/70eec6fe-614f-41b3-af23-ce3e509bfbce/enable",
             status_code=404)
 
         self.assertRaises(ValueError,
                           action.run,
-                          "foo")
+                          "70eec6fe-614f-41b3-af23-ce3e509bfbce", "1")
 
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
             'POST',
-            "mock://api.opsgenie.com/v1/json/policy/enable")
+            "mock://api.opsgenie.com/v2/policies/70eec6fe-614f-41b3-af23-ce3e509bfbce/enable")
 
         self.assertRaises(ValueError,
                           action.run,
-                          "foo")
+                          "70eec6fe-614f-41b3-af23-ce3e509bfbce", "1")
 
     def test_run_api_success(self):
-        expected = self.load_json("list_policy.json")
+        expected = self.load_json("enable_policy.json")
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('POST',
-                             "mock://api.opsgenie.com/v1/json/policy/enable",
-                             text=self.get_fixture_content("list_policy.json"))
+                             "mock://api.opsgenie.com/v2/policies/70eec6fe-614f-41b3-af23"
+                             "-ce3e509bfbce/enable",
+                             text=self.get_fixture_content("enable_policy.json"))
 
-        result = action.run("foo")
+        result = action.run("70eec6fe-614f-41b3-af23-ce3e509bfbce", "1")
         self.assertEqual(result, expected)

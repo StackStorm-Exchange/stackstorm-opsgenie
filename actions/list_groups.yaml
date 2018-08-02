@@ -1,8 +1,0 @@
----
-description: "List Groups in OpsGenie"
-enabled: true
-entry_point: "list_groups.py"
-name: "list_groups"
-pack: "opsgenie"
-
-runner_type: "python-script"

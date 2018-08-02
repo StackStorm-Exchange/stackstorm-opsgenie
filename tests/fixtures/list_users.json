@@ -1,40 +1,68 @@
 {
-    "users":[
-        {
-             "id" : "ac463592-dbd2-4ca3-a651d-48fhf5j5c871",
-             "username" : "john.smith@opsgenie.com",
-             "fullname" : "John Smith",
-             "timezone" : "America/New_York",
-             "locale" : "en_US",
-             "state" : "active",
-             "escalations" : ["support_esc"],
-             "schedules" : ["sch_1st"],
-             "role" : "Owner",
-             "groups" : ["network"],
-             "contacts": [
-                {
-                   "to": "john.smith@opsgenie.com",
-                   "method": "email"
-                }
-             ]
-        },
-        {
-             "id" : "fg463552-dvf2-4ca3-a4315-48fhf5j67875",
-             "username" :  "eric.boston@opsgenie.com",
-             "fullname" : "Eric Boston",
-             "timezone" : "America/New_York",
-             "locale" : "en_US",
-             "state" : "active",
-             "escalations" : ["support_esc"],
-             "schedules" : ["sch_1st"],
-             "role" : "Admin",
-             "groups" : ["database"],
-             "contacts": [
-                {
-                   "to": "eric.boston@opsgenie.com",
-                   "method": "email"
-                }
-             ]
-        }
-    ]
+  "totalCount": 8,
+  "data": [
+    {
+      "blocked": false,
+      "verified": false,
+      "id": "b5b92115-bfe7-43eb-8c2a-e467f2e5ddc4",
+      "username": "john.doe@opsgenie.com",
+      "fullName": "john doe",
+      "role": {
+        "id": "Admin",
+        "name": "Admin"
+      },
+      "timeZone": "Europe/Kirov",
+      "locale": "en_US",
+      "userAddress": {
+        "country": "",
+        "state": "",
+        "city": "",
+        "line": "",
+        "zipCode": ""
+      },
+      "createdAt": "2017-05-12T08:34:30.283Z"
+    },
+    {
+      "blocked": false,
+      "verified": false,
+      "id": "e07c63f0-dd8c-4ad4-983e-4ee7dc600463",
+      "username": "jane.doe@opsgenie.com",
+      "fullName": "jane doe",
+      "role": {
+        "id": "Admin",
+        "name": "Admin"
+      },
+      "timeZone": "Europe/Moscow",
+      "locale": "en_GB",
+      "tags": [
+        "tag1",
+        "tag3"
+      ],
+      "userAddress": {
+        "country": "US",
+        "state": "Indiana",
+        "city": "Terre Haute",
+        "line": "567 Stratford Park",
+        "zipCode": "47802"
+      },
+      "details": {
+        "detail1key": [
+          "detail1dvalue1",
+          "detail1value2"
+        ],
+        "detail2key": [
+          "detail2value"
+        ]
+      },
+      "createdAt": "2017-05-12T09:39:14.41Z"
+    }
+  ],
+  "paging": {
+    "prev": "http://api.opsgenie.com/v2/users?limit=2&offset=1&order=DESC&sort=fullName&query=role%3Aadmin",
+    "next": "http://api.opsgenie.com/v2/users?limit=2&offset=5&order=DESC&sort=fullName&query=role%3Aadmin",
+    "first": "http://api.opsgenie.com/v2/users?limit=2&offset=0&order=DESC&sort=fullName&query=role%3Aadmin",
+    "last": "http://api.opsgenie.com/v2/users?limit=2&offset=6&order=DESC&sort=fullName&query=role%3Aadmin"
+  },
+  "took": 0.261,
+  "requestId": "d2c50d0c-1c44-4fa5-99d4-20d1e7ca9938"
 }

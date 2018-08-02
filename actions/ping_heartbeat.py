@@ -11,24 +11,30 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
+import urllib
 
 from lib.actions import OpsGenieBaseAction
 
 
-class SendHeartbeatAction(OpsGenieBaseAction):
-    def run(self, name):
+class PingHeartbeatAction(OpsGenieBaseAction):
+    def run(self, name, method=None):
         """
-        Snd heartbeat to OpsGenie.
+        Ping a Heartbeat
 
         Args:
-        - name: Name of the heartbeat.
+        - name: Name of the heartbeat
+        - method: Method for ping request. It can be PUT, POST, GET, PATCH.
+
+
+        Returns:
+        - dict: Data from OpsGenie
         """
 
-        body = {"apiKey": self.api_key,
-                "name": name}
+        body = {}
+        method = method
 
-        data = self._req("POST",
-                         "v1/json/heartbeat/send",
+        data = self._req(method,
+                         "v2/heartbeats/" + urllib.pathname2url(name) + "/ping",
                          body=body)
 
         return data

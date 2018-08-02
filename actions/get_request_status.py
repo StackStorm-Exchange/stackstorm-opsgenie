@@ -11,22 +11,31 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
+import urllib
 
 from lib.actions import OpsGenieBaseAction
 
 
-class ListGroupsAction(OpsGenieBaseAction):
-    def run(self):
+class GetRequestStatusAction(OpsGenieBaseAction):
+    def run(self, request_id=None):
         """
-        List groups in OpsGenie.
+        Retrieve details of requests in OpsGenie.
+
+        Args:
+        - request_id: Request id of the request.
+
 
         Returns:
         - dict: Data from OpsGenie.
         """
 
-        payload = {"apiKey": self.api_key}
+        payload = {}
+
+        if request_id:
+            identifier = urllib.pathname2url(request_id)
 
         data = self._req("GET",
-                         "v1/json/group",
+                         "v2/alerts/requests/" + identifier,
                          payload=payload)
+
         return data

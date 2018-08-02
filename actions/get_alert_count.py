@@ -24,9 +24,9 @@ class GetAlertCountAction(OpsGenieBaseAction):
         - dict: Data from OpsGenie.
         """
 
-        payload = {"apiKey": self.api_key}
+        payload = {}
 
         data = self._req("GET",
-                         "v1/json/alert/count",
+                         "v2/alerts/count",
                          payload=payload)
         return data

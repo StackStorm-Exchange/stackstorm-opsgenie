@@ -1,6 +1,5 @@
 {
-    "message" : "alert created",
-    "alertId" : "d85b4c10-ca86-45f3-94a0-0685de932a86",
-    "status" : "successful",
-    "code" : 200
+  "result": "Request will be processed",
+  "took": 0.302,
+  "requestId": "43a29c5c-3dbf-4fa4-9c26-f4f71023e120"
 }

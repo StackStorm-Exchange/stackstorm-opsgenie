@@ -24,10 +24,10 @@ class GetAccountInfoAction(OpsGenieBaseAction):
         - dict: Data from OpsGenie.
         """
 
-        payload = {"apiKey": self.api_key}
+        payload = {}
 
         data = self._req("GET",
-                         "v1/json/account/info",
+                         "v2/account",
                          payload=payload)
 
         return data

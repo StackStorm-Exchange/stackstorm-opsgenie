@@ -1,5 +1,56 @@
 {
-    "status" : "success",
-    "code" : 200
+  "code": 200,
+  "data": [
+    {
+      "id": "055082dc-9427-48dd-85e0-f93a76e5f4a2",
+      "name": "Signal Sciences",
+      "enabled": true,
+      "type": "SignalSciences",
+      "teamId": ""
+    },
+    {
+      "id": "073e8e6a-a481-4b9b-8619-5c31d9a6e5da",
+      "name": "Default API",
+      "enabled": true,
+      "type": "API",
+      "teamId": ""
+    },
+    {
+      "id": "3163a9f9-5950-4e73-b99f-92562956e39c",
+      "name": "Datadog",
+      "enabled": false,
+      "type": "Datadog",
+      "teamId": ""
+    },
+    {
+      "id": "55e405e3-a130-4c7a-9866-664e498f39a9",
+      "name": "Observium2",
+      "enabled": false,
+      "type": "ObserviumV2",
+      "teamId": ""
+    },
+    {
+      "id": "72f6f51b-1ea9-4efd-be1b-4f29d1f593c6",
+      "name": "Solarwinds",
+      "enabled": false,
+      "type": "Solarwinds",
+      "teamId": ""
+    },
+    {
+      "id": "733388de-2ac1-4d70-8a2e-82834cb679d6",
+      "name": "Webhook",
+      "enabled": false,
+      "type": "Webhook",
+      "teamId": ""
+    },
+    {
+      "id": "8418d193-2dab-4490-b331-8c02cdd196b7",
+      "name": "Marid",
+      "enabled": false,
+      "type": "Marid",
+      "teamId": ""
+    }
+  ],
+  "took": 0,
+  "requestId": "9ceeb66b-9890-4687-9dbb-a38abc71eda3"
 }
-

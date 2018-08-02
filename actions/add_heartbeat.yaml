@@ -15,7 +15,8 @@ parameters:
   interval:
     type: "integer"
     description: "Specifies how often a heartbeat message should be expected."
-    default: ~
+    default:
+    required: true
   interval_unit:
     type: "string"
     description: "interval specified as minutes, hours or days."
@@ -23,7 +24,7 @@ parameters:
       - "minutes"
       - "hours"
       - "days"
-    default: "minutes"
+    required: true
   description:
     type: "string"
     description: "An optional description of the heartbeat."
@@ -31,4 +32,23 @@ parameters:
   enabled:
     type: "boolean"
     description: "Enable/disable heartbeat monitoring."
-    default: false
+    required: true
+  ownerTeamName:
+    type: "string"
+    description: "Owner team of the heartbeat, consisting id and/or name of the owner team"
+    required: true
+  alertMessage:
+    type: "string"
+    description: "Specifies the alert message for heartbeat expiration alert."
+    required: false
+    default: "HeartbeatName is expired."
+  alertTags:
+    type: "array"
+    description: "Specifies the alert priority for heartbeat expiration alert."
+    required: false
+    default:
+  alertPriority:
+    type: "string"
+    description: "Specifies the alert priority for heartbeat expiration alert."
+    required: false
+    default: "P3"

@@ -16,7 +16,7 @@ from lib.actions import OpsGenieBaseAction
 
 
 class ListUsersAction(OpsGenieBaseAction):
-    def run(self):
+    def run(self, limit=None, offset=None, sort=None, order=None):
         """
         List users in OpsGenie.
 
@@ -24,9 +24,20 @@ class ListUsersAction(OpsGenieBaseAction):
         - dict: Data from OpsGenie.
         """
 
-        payload = {"apiKey": self.api_key}
+        payload = {}
+        if limit:
+            payload["limit"] = limit
+
+        if offset:
+            payload["offset"] = offset
+
+        if sort:
+            payload["sort"] = sort
+
+        if order:
+            payload["order"] = order
 
         data = self._req("GET",
-                         "v1/json/user",
+                         "v2/users",
                          payload=payload)
         return data

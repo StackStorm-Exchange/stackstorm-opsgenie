@@ -1,0 +1,31 @@
+---
+description: "Add note to an alert in OpsGenie"
+enabled: true
+entry_point: "add_note_to_alert.py"
+name: "add_note_to_alert"
+pack: "opsgenie"
+
+runner_type: "python-script"
+
+parameters:
+  alert_id:
+    type: "string"
+    description: "Alert ID to close."
+    default: ~
+  alias:
+    type: "string"
+    description: "Alert ID to close."
+    default: ~
+  user:
+    type: "string"
+    description: "Default owner of the execution."
+    default: ~
+  note: 
+    type: "string"
+    description: "Additional alert note"
+    default: ~
+    required: true
+  source:
+    type: "string"
+    description: "User defined field to specify source of close action."
+    default: ~

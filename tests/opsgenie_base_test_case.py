@@ -12,11 +12,10 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-import yaml
 import json
 
 import requests_mock
-
+import yaml
 from st2tests.base import BaseActionTestCase
 
 

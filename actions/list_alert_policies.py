@@ -15,18 +15,17 @@
 from lib.actions import OpsGenieBaseAction
 
 
-class ListHeartbeatsAction(OpsGenieBaseAction):
+class ListAlertPoliciesAction(OpsGenieBaseAction):
     def run(self):
         """
-        List details of heartbeat monitors in OpsGenie.
+        List policies in OpsGenie.
 
         Returns:
         - dict: Data from OpsGenie.
         """
 
-        payload = {"apiKey": self.api_key}
+        payload = {}
 
         data = self._req("GET",
-                         "v1/json/heartbeat",
-                         payload=payload)
+                         "v2/policies/alert", payload=payload)
         return data

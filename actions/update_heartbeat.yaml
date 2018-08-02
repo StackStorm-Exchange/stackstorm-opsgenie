@@ -1,11 +1,12 @@
 ---
 description: "Update an Heartbeat in OpsGenie"
 enabled: true
-entry_point: "add_heartbeat.py"
+entry_point: "update_heartbeat.py"
 name: "update_heartbeat"
 pack: "opsgenie"
 
 runner_type: "python-script"
+
 
 parameters:
   name:
@@ -15,15 +16,16 @@ parameters:
   interval:
     type: "integer"
     description: "Specifies how often a heartbeat message should be expected."
-    default: ~
-  intervalUnit:
+    default:
+    required: false
+  interval_unit:
     type: "string"
     description: "interval specified as minutes, hours or days."
     enum:
       - "minutes"
       - "hours"
       - "days"
-    default: "minutes"
+    required: false
   description:
     type: "string"
     description: "An optional description of the heartbeat."
@@ -31,4 +33,23 @@ parameters:
   enabled:
     type: "boolean"
     description: "Enable/disable heartbeat monitoring."
-    default: false
+    required: false
+  ownerTeamName:
+    type: "string"
+    description: "Owner team of the heartbeat, consisting id and/or name of the owner team"
+    required: false
+  alertMessage:
+    type: "string"
+    description: "Specifies the alert message for heartbeat expiration alert."
+    required: false
+    default: ~
+  alertTags:
+    type: "array"
+    description: "Specifies the alert priority for heartbeat expiration alert."
+    required: false
+    default: ~
+  alertPriority:
+    type: "string"
+    description: "Specifies the alert priority for heartbeat expiration alert."
+    required: false
+    default: ~

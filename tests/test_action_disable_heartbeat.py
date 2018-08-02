@@ -12,9 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from opsgenie_base_test_case import OpsGenieBaseActionTestCase
-
 from disable_heartbeat import DisableHeartbeatAction
+from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 
 class DisableHeartbeatTestCase(OpsGenieBaseActionTestCase):
@@ -24,7 +23,7 @@ class DisableHeartbeatTestCase(OpsGenieBaseActionTestCase):
     def test_run_api_404(self):
         action, adapter = self._get_action_status_code(
             'POST',
-            "mock://api.opsgenie.com/v1/json/heartbeat/disable",
+            "mock://api.opsgenie.com/v2/heartbeats/Test/disable",
             status_code=404)
 
         self.assertRaises(ValueError,
@@ -34,19 +33,19 @@ class DisableHeartbeatTestCase(OpsGenieBaseActionTestCase):
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
             'POST',
-            "mock://api.opsgenie.com/v1/json/heartbeat/disable")
+            "mock://api.opsgenie.com/v2/heartbeats/Test/disable")
 
         self.assertRaises(ValueError,
                           action.run,
                           "Test")
 
     def test_run_api_success(self):
-        expected = self.load_json("enable_heartbeat.json")
+        expected = self.load_json("disable_heartbeat.json")
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('POST',
-                             "mock://api.opsgenie.com/v1/json/heartbeat/disable",
-                             text=self.get_fixture_content("enable_heartbeat.json"))
+                             "mock://api.opsgenie.com/v2/heartbeats/Test/disable",
+                             text=self.get_fixture_content("disable_heartbeat.json"))
 
         result = action.run("Test")
         self.assertEqual(result, expected)

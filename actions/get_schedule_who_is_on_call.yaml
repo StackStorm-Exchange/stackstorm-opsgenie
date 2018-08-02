@@ -6,3 +6,23 @@ name: "get_schedule_who_is_on_call"
 pack: "opsgenie"
 
 runner_type: "python-script"
+
+parameters:
+  scheduleIdentifier:
+    type: "string"
+    description: "Identifier of the schedule."
+    default: ~
+    required: true
+  scheduleIdentifierType:
+    type: "string"
+    description: "Type of the schedule identifier."
+    enum:
+      - "id"
+      - "name"
+  flat:
+    type: "boolean"
+    description: "When enabled, retrieves user names of all on call participants."
+    default: false
+  date:
+    type: "string"
+    description: "Starting date of the timeline."

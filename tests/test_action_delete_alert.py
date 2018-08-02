@@ -12,9 +12,8 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 
-from opsgenie_base_test_case import OpsGenieBaseActionTestCase
-
 from delete_alert import DeleteAlertAction
+from opsgenie_base_test_case import OpsGenieBaseActionTestCase
 
 
 class DeleteAlertsActionTestCase(OpsGenieBaseActionTestCase):
@@ -24,7 +23,7 @@ class DeleteAlertsActionTestCase(OpsGenieBaseActionTestCase):
     def test_run_api_404(self):
         action, adapter = self._get_action_status_code(
             'DELETE',
-            "mock://api.opsgenie.com/v1/json/alert",
+            "mock://api.opsgenie.com/v2/alerts/ac463592-dbd2-4ca3-a651d-48fhf5j5c871",
             status_code=404)
 
         self.assertRaises(ValueError,
@@ -34,7 +33,7 @@ class DeleteAlertsActionTestCase(OpsGenieBaseActionTestCase):
     def test_run_invalid_json(self):
         action, adapter = self._get_action_invalid_json(
             'DELETE',
-            "mock://api.opsgenie.com/v1/json/alert")
+            "mock://api.opsgenie.com/v2/alerts/ac463592-dbd2-4ca3-a651d-48fhf5j5c871")
         self.assertRaises(ValueError,
                           action.run,
                           "ac463592-dbd2-4ca3-a651d-48fhf5j5c871")
@@ -44,7 +43,8 @@ class DeleteAlertsActionTestCase(OpsGenieBaseActionTestCase):
 
         action, adapter = self._get_mocked_action()
         adapter.register_uri('DELETE',
-                             "mock://api.opsgenie.com/v1/json/alert",
+                             "mock://api.opsgenie.com/v2/alerts/ac463592-dbd2-4ca3-a651d"
+                             "-48fhf5j5c871",
                              text=self.get_fixture_content("delete_alert.json"))
 
         result = action.run("ac463592-dbd2-4ca3-a651d-48fhf5j5c871")

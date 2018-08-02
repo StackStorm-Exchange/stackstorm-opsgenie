@@ -16,19 +16,20 @@ from lib.actions import OpsGenieBaseAction
 
 
 class EnableIntegrationAction(OpsGenieBaseAction):
-    def run(self, name):
+    def run(self, integrationId, method):
         """
         Enable an integration in OpsGenie.
 
         Args:
-        - name: Name of integration.
+        - integrationId: Id of integration
+        - method: Method for Enable
 
         Returns:
         - dict: Data from OpsGenie.
         """
+        payload = {}
+        method = method
 
-        payload = {"name": name}
-        data = self._req("POST",
-                         "v1/json/integration/enable",
-                         payload)
+        data = self._req(method, "v2/integrations/" + integrationId + "/enable",
+                         payload=payload)
         return data
