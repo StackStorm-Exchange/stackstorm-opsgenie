@@ -1,3 +1,3 @@
 # CONTRIBUTORS
 
-Jon Middleton <jon.middleton@pulsant.com>
+Jon Middleton <jjm@geeky-and-blonde.me.uk>
