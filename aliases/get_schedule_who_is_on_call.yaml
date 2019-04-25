@@ -6,7 +6,15 @@ action_ref: "opsgenie.get_schedule_who_is_on_call"
 formats:
   - display: "opsgenie oncall $schedule name"
     representation:
-      - "opsgenie oncall {{scheduleIdentifierType}} {{scheduleIdentifier}}"
-ack:
-  enabled: true
-  append_url: false
+      - "{{scheduleIdentifierType}} the person on call for {{scheduleIdentifier}}"
+result:
+  format: |
+    {% if execution.status == 'succeeded' %}
+    On call:
+    {% for item in execution.result.result.oncalls %}
+    {{item.name}}: {% for oncall in item.participants %}{{oncall.name}} {% endfor %}
+    testestest
+    {% endfor %}
+    {% else %}
+    Could not query OpsGenie. See see {{execution.id}} for details.{~}
+    {% endif %}
