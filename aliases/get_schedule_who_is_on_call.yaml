@@ -4,9 +4,9 @@ pack: "opsgenie"
 description: "List who is on call."
 action_ref: "opsgenie.get_schedule_who_is_on_call"
 formats:
-  - display: "opsgenie oncall"
+  - display: "name the person on call for #scheduleIdentifier "
     representation:
-      - "opsgenie oncall"
+      - "{{scheduleIdentifierType}} the person on call for {{scheduleIdentifier}}"
 ack:
   enabled: false
 result:
