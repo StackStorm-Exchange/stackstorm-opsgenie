@@ -33,6 +33,9 @@ class OpsGenieBaseAction(Action):
         except KeyError:
             raise ValueError("api_key needs to be configured!")
 
+        if self.config.get("region") == "eu":
+            self.API_HOST = "https://api.eu.opsgenie.com/"
+
     def _url(self, uri):
         """
         """
