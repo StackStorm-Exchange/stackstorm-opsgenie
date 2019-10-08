@@ -10,4 +10,4 @@ region:
     OpsGenie documentation for the complete list of API regions
   type: "string"
   required: false
-  default: "us"
+  default: ~
