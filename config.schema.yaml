@@ -4,3 +4,10 @@ api_key:
   type: "string"
   secret: true
   required: true
+region:
+  description: "The service region for your OpsGenie account"
+  type: "string"
+  enum:
+    - "eu"
+    - "us"
+  default: "us"
