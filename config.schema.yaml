@@ -9,7 +9,5 @@ region:
     The service region for your OpsGenie account - check the
     OpsGenie documentation for the complete list of API regions
   type: "string"
-  enum:
-    - "eu"
-    - "us"
+  required: false
   default: "us"
