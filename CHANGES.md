@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4
+
+- Add config option for region and update API URL when it's set to eu (Fixes: #12).
+
 ## 0.3
 
 - Update actions and action tests for OpsGenie v2.
