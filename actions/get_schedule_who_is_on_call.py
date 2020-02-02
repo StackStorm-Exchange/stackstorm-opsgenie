@@ -11,9 +11,9 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-import urllib
+from six.moves.urllib.request import pathname2url
 
-from lib.actions import OpsGenieBaseAction
+from .lib.actions import OpsGenieBaseAction
 
 
 class ScheduleWhoIsOnCallAction(OpsGenieBaseAction):
@@ -28,7 +28,7 @@ class ScheduleWhoIsOnCallAction(OpsGenieBaseAction):
 
         payload = {}
         if scheduleIdentifier:
-            identifier = urllib.pathname2url(scheduleIdentifier)
+            identifier = pathname2url(scheduleIdentifier)
 
         if scheduleIdentifierType:
             payload["scheduleIdentifierType"] = scheduleIdentifierType

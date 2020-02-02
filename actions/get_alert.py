@@ -11,9 +11,9 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-import urllib
+from six.moves.urllib.request import pathname2url
 
-from lib.actions import OpsGenieBaseAction
+from .lib.actions import OpsGenieBaseAction
 
 
 class GetAlertAction(OpsGenieBaseAction):
@@ -36,10 +36,10 @@ class GetAlertAction(OpsGenieBaseAction):
 
         if alert_id:
 
-            identifier = urllib.pathname2url(alert_id)
+            identifier = pathname2url(alert_id)
             payload['identifierType'] = 'id'
         elif alias:
-            identifier = urllib.pathname2url(alias)
+            identifier = pathname2url(alias)
             payload['identifierType'] = 'alias'
         else:
             raise ValueError("Need one of alert_id or alias.")

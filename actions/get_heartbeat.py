@@ -11,9 +11,9 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-import urllib
+from six.moves.urllib.request import pathname2url
 
-from lib.actions import OpsGenieBaseAction
+from .lib.actions import OpsGenieBaseAction
 
 
 class GetHeartbeatAction(OpsGenieBaseAction):
@@ -31,7 +31,7 @@ class GetHeartbeatAction(OpsGenieBaseAction):
         body = {}
 
         data = self._req("GET",
-                         "v2/heartbeats/" + urllib.pathname2url(name),
+                         "v2/heartbeats/" + pathname2url(name),
                          body=body)
 
         return data

@@ -11,9 +11,9 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-import urllib
+from six.moves.urllib.request import pathname2url
 
-from lib.actions import OpsGenieBaseAction
+from .lib.actions import OpsGenieBaseAction
 
 
 class DeleteHeartbeatAction(OpsGenieBaseAction):
@@ -28,7 +28,7 @@ class DeleteHeartbeatAction(OpsGenieBaseAction):
         - dict: Data from OpsGenie.
         """
 
-        payload = {"name": urllib.pathname2url(name)}
+        payload = {"name": pathname2url(name)}
 
         data = self._req("DELETE",
                          "v2/heartbeats/" + name,

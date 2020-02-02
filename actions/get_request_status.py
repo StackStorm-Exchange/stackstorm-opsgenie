@@ -11,9 +11,9 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-import urllib
+from six.moves.urllib.request import pathname2url
 
-from lib.actions import OpsGenieBaseAction
+from .lib.actions import OpsGenieBaseAction
 
 
 class GetRequestStatusAction(OpsGenieBaseAction):
@@ -32,7 +32,7 @@ class GetRequestStatusAction(OpsGenieBaseAction):
         payload = {}
 
         if request_id:
-            identifier = urllib.pathname2url(request_id)
+            identifier = pathname2url(request_id)
 
         data = self._req("GET",
                          "v2/alerts/requests/" + identifier,
