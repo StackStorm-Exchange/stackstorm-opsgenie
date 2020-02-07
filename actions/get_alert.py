@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 from six.moves.urllib.request import pathname2url
 
-from .lib.actions import OpsGenieBaseAction
+from lib.actions import OpsGenieBaseAction
 
 
 class GetAlertAction(OpsGenieBaseAction):
