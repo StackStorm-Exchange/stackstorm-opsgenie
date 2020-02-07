@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.4.1
+
+- Python 3 fixups
+- Add explicit support for Python 2 and 3
+
 ## 0.4.0
 
 - Add config option for region and update API URL when it's set to eu (Fixes: #12).
