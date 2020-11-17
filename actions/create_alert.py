@@ -15,13 +15,16 @@ import re
 
 from lib.actions import OpsGenieBaseAction
 
+
 def identify_entity(identity):
     """
     Detect the type of OpsGenie entity being processed: an id, username or name.
 
-    identity: string : Expects to be a string containing an OpsGenie entity and it's type separated by a single '-'
+    identity: string : Expects to be a string containing an OpsGenie entity and
+                       it's type separated by a single '-'
 
-    return: A dictionary with the form and type of the entity or None if the identity can't be processed.
+    return: A dictionary with the form and type of the entity or None if the identity
+            can't be processed.
     """
     res = identity.rsplit("-", 1)
     if len(res) != 2:
@@ -37,12 +40,9 @@ def identify_entity(identity):
         form_key = "id"
     # Any other forms are just names.
     else:
-        form_key="name"
+        form_key = "name"
 
-    return {
-        form_key: str(form),
-        "type": str(type_)
-    }
+    return {form_key: str(form), "type": str(type_)}
 
 
 class CreateAlertAction(OpsGenieBaseAction):
