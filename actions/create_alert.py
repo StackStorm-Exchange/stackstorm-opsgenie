@@ -11,8 +11,38 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
+import re
 
 from lib.actions import OpsGenieBaseAction
+
+def identify_entity(identity):
+    """
+    Detect the type of OpsGenie entity being processed: an id, username or name.
+
+    identity: string : Expects to be a string containing an OpsGenie entity and it's type separated by a single '-'
+
+    return: A dictionary with the form and type of the entity or None if the identity can't be processed.
+    """
+    res = identity.rsplit("-", 1)
+    if len(res) != 2:
+        print("Skipping {} because it's not formed as '<identiy>-<type>'".format(identity))
+        return None
+
+    form, type_ = res
+    # Detect email form: "trinity@opsgenie.com"
+    if type_ == "user" and re.match(r"^[^@]+@[^@]+$", form):
+        form_key = "username"
+    # Detect id form: "4513b7ea-3b91-438f-b7e4-e3e54af9147c"
+    elif re.match(r"^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$", form):
+        form_key = "id"
+    # Any other forms are just names.
+    else:
+        form_key="name"
+
+    return {
+        form_key: str(form),
+        "type": str(type_)
+    }
 
 
 class CreateAlertAction(OpsGenieBaseAction):
@@ -81,20 +111,15 @@ class CreateAlertAction(OpsGenieBaseAction):
 
         if responders:
             for responder in responders:
-                responder_dict = {}
-                splitted = responder.rsplit("-", 1)
-                responder_dict["name"] = str(splitted[0])
-                responder_dict["type"] = str(splitted[1])
-                responders_list.append(responder_dict)
+                opsgenie_entity = identify_entity(responder)
+                if opsgenie_entity is not None:
+                    responders_list.append(opsgenie_entity)
             body["responders"] = responders_list
 
         if visibleTo:
-            for visibleOne in visibleTo:
-                visibleTo_dict = {}
-                split = visibleOne.rsplit("-", 1)
-                visibleTo_dict["name"] = str(split[0])
-                visibleTo_dict["type"] = str(split[1])
-                visibleTo_list.append(visibleTo_dict)
+            for entity in visibleTo:
+                ops_genie_entity = identify_entity(entity)
+                visibleTo_list.append(ops_genie_entity)
 
             body["visibleTo"] = visibleTo_list
 
