@@ -31,8 +31,6 @@ class EnableHeartbeatAction(OpsGenieBaseAction):
         body = {}
         name_url = pathname2url(name)
 
-        data = self._req("POST",
-                         "v2/heartbeats/" + name_url + "/enable",
-                         body=body)
+        data = self._req("POST", "v2/heartbeats/" + name_url + "/enable", body=body)
 
         return data

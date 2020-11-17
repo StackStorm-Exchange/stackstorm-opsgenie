@@ -37,7 +37,5 @@ class ListUsersAction(OpsGenieBaseAction):
         if order:
             payload["order"] = order
 
-        data = self._req("GET",
-                         "v2/users",
-                         payload=payload)
+        data = self._req("GET", "v2/users", payload=payload)
         return data

@@ -18,6 +18,7 @@ You'll need an OpsGenie account to create an integration API key.
            remember to tell StackStorm to load these new values by running
            `st2ctl reload --register-configs`
 
+
 ## Using OpsGenie for hubot Heartbeat
 
 This requires 2 StackStorm installations, with both hubots in the same
@@ -48,13 +49,34 @@ st2 rule enable opsgenie.send_heartbeat_timer
 To get an alert if it expires an integration for Heartbeat should be
 configured in the OpsGenie web interface.
 
+## Special note for the Create Alert Action
+
+The arguments `responder` and `visibleTo` require a list of specifically formatted strings.  These
+strings present an OpsGenie entity, `team`, `user`, `escalation` or `schedule`.  Each entity can
+be identified by an `id`, `name` or `username`.
+
+As such, the format of the string is expected to be the entity identifier followed by a `-` then the
+entity type: `<identifier>-<type>`
+
+Here are various examples showing possible forms of the string:
+```
+"4513b7ea-3b91-438f-b7e4-e3e54af9147c-team",
+"NOC-team",
+"bb4d9938-c3c2-455d-aaab-727aa701c0d8-user",
+"trinity@opsgenie.com-user",
+"aee8a0de-c80f-4515-a232-501c0bc9d715-escalation",
+"Nightwatch Escalation-escalation",
+"80564037-1984-4f38-b98e-8a1f662df552-schedule",
+"First Responders Schedule-schedule"
+```
+
 ## Coverage of OpsGenie API
 
-Key: 
+Key:
 - [X] Completed.
 - [-] Partial coverage.
 - [?] Not currently planned.
-- [ ] Outstanding for current version.  
+- [ ] Outstanding for current version.
 
 [-] Alert API
     [-] Create Alert
@@ -146,20 +168,20 @@ Key:
 [?] Notification Rule API
     [?] Notification Rule API Requests
         [?] Add Notification Rule
-	[?] Update Notification Rule
-	[?] Delete Notification Rule
-	[?] Enable Notification Rule
-	[?] Disable Notification Rule
-	[?] Change Notification Rule Order
-	[?] Repeat Notification Rule
-	[?] Get Notification Rule
-	[?] List Notification Rules
-	[?] Notification Rule Step API Requests
+    [?] Update Notification Rule
+    [?] Delete Notification Rule
+    [?] Enable Notification Rule
+    [?] Disable Notification Rule
+    [?] Change Notification Rule Order
+    [?] Repeat Notification Rule
+    [?] Get Notification Rule
+    [?] List Notification Rules
+    [?] Notification Rule Step API Requests
     [?] Add Notification Rule Step
         [?] Update Notification Rule Step
-	[?] Delete Notification Rule Step
-	[?] Enable Notification Rule Step
-	[?] Disable Notification Rule Step
+    [?] Delete Notification Rule Step
+    [?] Enable Notification Rule Step
+    [?] Disable Notification Rule Step
 [?] Contacts API
     [?] Add Contact
     [?] Update Contact

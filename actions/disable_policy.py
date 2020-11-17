@@ -32,7 +32,5 @@ class DisablePolicyAction(OpsGenieBaseAction):
         else:
             payload = {}
 
-        data = self._req("POST",
-                         "v2/policies/" + policy_id + "/disable",
-                         payload=payload)
+        data = self._req("POST", "v2/policies/" + policy_id + "/disable", payload=payload)
         return data

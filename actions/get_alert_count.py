@@ -26,7 +26,5 @@ class GetAlertCountAction(OpsGenieBaseAction):
 
         payload = {}
 
-        data = self._req("GET",
-                         "v2/alerts/count",
-                         payload=payload)
+        data = self._req("GET", "v2/alerts/count", payload=payload)
         return data

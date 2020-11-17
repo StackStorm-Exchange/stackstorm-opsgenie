@@ -39,14 +39,14 @@ class DeleteAlertAction(OpsGenieBaseAction):
             if len(source) > 100:
                 raise ValueError("source is too long, can't be over 100 chars.")
             else:
-                payload['source'] = source
+                payload["source"] = source
 
         if alert_id:
             identifier = pathname2url(alert_id)
-            payload['identifierType'] = 'id'
+            payload["identifierType"] = "id"
         elif alias:
             identifier = pathname2url(alias)
-            payload['identifierType'] = 'alias'
+            payload["identifierType"] = "alias"
         else:
             raise ValueError("Need one of alert_id or alias.")
 
@@ -56,7 +56,5 @@ class DeleteAlertAction(OpsGenieBaseAction):
             else:
                 payload["user"] = "user"
 
-        data = self._req("DELETE",
-                         "v2/alerts/" + identifier,
-                         payload=payload)
+        data = self._req("DELETE", "v2/alerts/" + identifier, payload=payload)
         return data

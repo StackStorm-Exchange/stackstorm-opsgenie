@@ -37,15 +37,13 @@ class GetAlertAction(OpsGenieBaseAction):
         if alert_id:
 
             identifier = pathname2url(alert_id)
-            payload['identifierType'] = 'id'
+            payload["identifierType"] = "id"
         elif alias:
             identifier = pathname2url(alias)
-            payload['identifierType'] = 'alias'
+            payload["identifierType"] = "alias"
         else:
             raise ValueError("Need one of alert_id or alias.")
 
-        data = self._req("GET",
-                         "v2/alerts/" + identifier,
-                         payload=payload)
+        data = self._req("GET", "v2/alerts/" + identifier, payload=payload)
 
         return data

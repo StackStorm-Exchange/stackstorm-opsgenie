@@ -26,8 +26,6 @@ class GetAccountInfoAction(OpsGenieBaseAction):
 
         payload = {}
 
-        data = self._req("GET",
-                         "v2/account",
-                         payload=payload)
+        data = self._req("GET", "v2/account", payload=payload)
 
         return data
