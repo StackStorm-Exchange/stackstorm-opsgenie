@@ -26,6 +26,5 @@ class ListAlertPoliciesAction(OpsGenieBaseAction):
 
         payload = {}
 
-        data = self._req("GET",
-                         "v2/policies/alert", payload=payload)
+        data = self._req("GET", "v2/policies/alert", payload=payload)
         return data

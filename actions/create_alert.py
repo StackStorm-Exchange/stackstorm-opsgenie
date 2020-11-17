@@ -16,11 +16,22 @@ from lib.actions import OpsGenieBaseAction
 
 
 class CreateAlertAction(OpsGenieBaseAction):
-    def run(self, message, alias=None,
-            description=None, responders=None, visibleTo=None, actions=None,
-            tags=None, details=None, entity=None, source="StackStorm",
-            priority=None, user=None, note=None
-            ):
+    def run(
+        self,
+        message,
+        alias=None,
+        description=None,
+        responders=None,
+        visibleTo=None,
+        actions=None,
+        tags=None,
+        details=None,
+        entity=None,
+        source="StackStorm",
+        priority=None,
+        user=None,
+        note=None,
+    ):
         """
         Create alert in OpsGenie.
 
@@ -52,8 +63,7 @@ class CreateAlertAction(OpsGenieBaseAction):
         visibleTo_list = []
 
         if len(message) > 130:
-            raise ValueError("Message length ({}) is over 130 chars".format(
-                len(message)))
+            raise ValueError("Message length ({}) is over 130 chars".format(len(message)))
         else:
             body = {"message": message}
 
@@ -119,16 +129,14 @@ class CreateAlertAction(OpsGenieBaseAction):
             if len(user) > 100:
                 raise ValueError("User is too long, can't be over 100 chars.")
             else:
-                body['user'] = user
+                body["user"] = user
 
         if note:
             if len(note) > 25000:
                 raise ValueError("Note is too long, can't be over 25000 chars.")
             else:
-                body['note'] = note
+                body["note"] = note
 
-        data = self._req("POST",
-                         "v2/alerts",
-                         body=body)
+        data = self._req("POST", "v2/alerts", body=body)
 
         return data

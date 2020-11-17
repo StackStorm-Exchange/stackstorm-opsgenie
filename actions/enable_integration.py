@@ -30,6 +30,5 @@ class EnableIntegrationAction(OpsGenieBaseAction):
         payload = {}
         method = method
 
-        data = self._req(method, "v2/integrations/" + integrationId + "/enable",
-                         payload=payload)
+        data = self._req(method, "v2/integrations/" + integrationId + "/enable", payload=payload)
         return data

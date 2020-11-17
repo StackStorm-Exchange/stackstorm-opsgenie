@@ -30,8 +30,6 @@ class GetHeartbeatAction(OpsGenieBaseAction):
 
         body = {}
 
-        data = self._req("GET",
-                         "v2/heartbeats/" + pathname2url(name),
-                         body=body)
+        data = self._req("GET", "v2/heartbeats/" + pathname2url(name), body=body)
 
         return data

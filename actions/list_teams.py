@@ -25,7 +25,5 @@ class ListTeamsAction(OpsGenieBaseAction):
         """
         payload = {}
 
-        data = self._req("GET",
-                         "v2/teams",
-                         payload=payload)
+        data = self._req("GET", "v2/teams", payload=payload)
         return data

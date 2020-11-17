@@ -35,6 +35,5 @@ class ListIntegrationsAction(OpsGenieBaseAction):
         if teamName:
             payload["teamName"] = teamName
 
-        data = self._req("GET",
-                         "v2/integrations", payload=payload)
+        data = self._req("GET", "v2/integrations", payload=payload)
         return data

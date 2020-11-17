@@ -33,8 +33,8 @@ class GetIntegrationAction(OpsGenieBaseAction):
 
         payload = {}
 
-        data = self._req("GET",
-                         "v2/integrations/" + integration_id,  # v2/alerts/:identifier
-                         payload=payload)
+        data = self._req(
+            "GET", "v2/integrations/" + integration_id, payload=payload  # v2/alerts/:identifier
+        )
 
         return data

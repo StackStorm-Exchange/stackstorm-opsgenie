@@ -30,8 +30,6 @@ class DeleteHeartbeatAction(OpsGenieBaseAction):
 
         payload = {"name": pathname2url(name)}
 
-        data = self._req("DELETE",
-                         "v2/heartbeats/" + name,
-                         payload=payload)
+        data = self._req("DELETE", "v2/heartbeats/" + name, payload=payload)
 
         return data

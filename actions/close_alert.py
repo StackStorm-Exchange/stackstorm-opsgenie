@@ -40,10 +40,10 @@ class CloseAlertAction(OpsGenieBaseAction):
 
         if alert_id:
             identifier = pathname2url(alert_id)  # default
-            parameters['identifierType'] = 'id'
+            parameters["identifierType"] = "id"
         elif alias:
             identifier = pathname2url(alias)
-            parameters['identifierType'] = 'alias'
+            parameters["identifierType"] = "alias"
         else:
             raise ValueError("Need one of alias or alert_id to be set.")
 
@@ -51,16 +51,16 @@ class CloseAlertAction(OpsGenieBaseAction):
             if len(user) > 100:
                 raise ValueError("user is too long, can't be over 100 chars.")
             else:
-                body['user'] = user
+                body["user"] = user
 
         if note:
             if len(note) > 25000:
                 raise ValueError("note is too long, can't be over 25000 chars.")
             else:
-                body['note'] = note
+                body["note"] = note
 
-        data = self._req("POST",
-                         "v2/alerts/" + identifier + "/close",
-                         body=body, payload=parameters)
+        data = self._req(
+            "POST", "v2/alerts/" + identifier + "/close", body=body, payload=parameters
+        )
 
         return data

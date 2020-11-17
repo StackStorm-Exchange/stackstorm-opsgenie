@@ -34,8 +34,6 @@ class GetRequestStatusAction(OpsGenieBaseAction):
         if request_id:
             identifier = pathname2url(request_id)
 
-        data = self._req("GET",
-                         "v2/alerts/requests/" + identifier,
-                         payload=payload)
+        data = self._req("GET", "v2/alerts/requests/" + identifier, payload=payload)
 
         return data
