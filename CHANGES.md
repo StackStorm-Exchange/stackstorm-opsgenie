@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.0
+
+* Drop Python 2.7 support
+
 ## 0.4.1
 
 - Python 3 fixups
