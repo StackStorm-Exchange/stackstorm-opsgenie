@@ -1,9 +1,13 @@
 # Changelog
 
-## 0.5.0
+## 1.1.0
 - Removed executable bit from non-executable files.
 - Re-formatted code with Black.
 - Added support for id, name or username in create_alert action.
+
+## 1.0.0
+
+- Drop Python 2.7 support
 
 ## 0.4.1
 
