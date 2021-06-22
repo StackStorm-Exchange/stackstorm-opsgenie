@@ -31,12 +31,15 @@ def identify_entity(identity):
         print("Skipping {} because it's not formed as '<identiy>-<type>'".format(identity))
         return None
 
+    re_email = re.compile(r"^[^@]+@[^@]+$")
+    re_id = re.compile(r"^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$")
+
     form, type_ = res
     # Detect email form: "trinity@opsgenie.com"
-    if type_ == "user" and re.match(r"^[^@]+@[^@]+$", form):
+    if type_ == "user" and re.match(re_email, form):
         form_key = "username"
     # Detect id form: "4513b7ea-3b91-438f-b7e4-e3e54af9147c"
-    elif re.match(r"^[0-9a-z]{8}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{4}-[0-9a-z]{12}$", form):
+    elif re.match(re_id, form):
         form_key = "id"
     # Any other forms are just names.
     else:
