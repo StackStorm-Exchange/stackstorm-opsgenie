@@ -16,8 +16,18 @@ from lib.actions import OpsGenieBaseAction
 
 
 class AddHeartbeatAction(OpsGenieBaseAction):
-    def run(self, name, interval=None, interval_unit=None, description=None, enabled=False,
-            ownerTeamName=None, alertMessage=None, alertTags=None, alertPriority=None):
+    def run(
+        self,
+        name,
+        interval=None,
+        interval_unit=None,
+        description=None,
+        enabled=False,
+        ownerTeamName=None,
+        alertMessage=None,
+        alertTags=None,
+        alertPriority=None,
+    ):
         """
         Add a Heartbeat to OpsGenie
 
@@ -73,8 +83,6 @@ class AddHeartbeatAction(OpsGenieBaseAction):
         if alertPriority:
             body["alertPriority"] = alertPriority
 
-        data = self._req("POST",
-                         "v2/heartbeats",
-                         body=body)
+        data = self._req("POST", "v2/heartbeats", body=body)
 
         return data

@@ -17,9 +17,18 @@ from lib.actions import OpsGenieBaseAction
 
 
 class UpdateHeartbeatAction(OpsGenieBaseAction):
-    def run(self, name, interval=None, interval_unit=None, description=None,
-            enabled=False, ownerTeamName=None,
-            alertMessage=None, alertTags=None, alertPriority=None):
+    def run(
+        self,
+        name,
+        interval=None,
+        interval_unit=None,
+        description=None,
+        enabled=False,
+        ownerTeamName=None,
+        alertMessage=None,
+        alertTags=None,
+        alertPriority=None,
+    ):
         """
         Update a Heartbeat
 
@@ -67,8 +76,6 @@ class UpdateHeartbeatAction(OpsGenieBaseAction):
         if alertPriority:
             body["alertPriority"] = alertPriority
 
-        data = self._req("PATCH",
-                         "v2/heartbeats/" + pathname2url(name),
-                         body=body)
+        data = self._req("PATCH", "v2/heartbeats/" + pathname2url(name), body=body)
 
         return data
